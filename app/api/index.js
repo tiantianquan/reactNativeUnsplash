@@ -1,35 +1,28 @@
 'use strict'
-//前缀url
-const END_POINT_URL = 'http://api.douban.com/v2/movie/'
+/**
+ * unsplash 前缀URL
+ * @type {String}
+ */
+const END_POINT_URL = 'https://source.unsplash.com'
 
-//正在上映
-const IN_THEATERS_URL = `${END_POINT_URL}in_theaters`
-
-//MOVIE 前缀URL
-const MOVIE_END_POINT_URL = `${END_POINT_URL}`
+/**
+ * 随机图片URL
+ * @type {RegExp}
+ */
+const RANDOM_URL = `${END_POINT_URL}/random`
 
 //TODO:添加错误处理
 /**
- * douban API 封装
+ * API 封装
  */
 class Api {
   /**
-   * 获取正在上映列表
-   * @return {array} 上映列表
+   * 获取随机图片Url
+   * @return {[string]} [Url]
    */
-  static async getIntheaters() {
-    let jsonData = await this.fetchJsonData(IN_THEATERS_URL)
-    return jsonData.subjects
-  }
-
-  /**
-   * 获取具体电影信息
-   * @param  {int || string} id
-   * @return {object} 电影信息
-   */
-  static async getMovieById(id) {
-    let jsonData = await this.fetchJsonData(MOVIE_END_POINT_URL + id)
-    return jsonData
+  static async getRandomImageUrl() {
+    let jsonData = await fetch(RANDOM_URL)
+    return jsonData.url
   }
 
   /**
@@ -39,7 +32,14 @@ class Api {
     let resData = await fetch(url)
     return resData.json()
   }
+
+  static async fetchTextData(url) {
+    let resData = await fetch(url)
+    return resData.text()
+  }
 }
 
 
 export default Api
+
+// module.exports = Api
