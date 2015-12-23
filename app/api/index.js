@@ -1,16 +1,5 @@
 'use strict'
-import fetch from 'isomorphic-fetch'
-/**
- * unsplash 前缀URL
- * @type {String}
- */
-const END_POINT_URL = 'https://source.unsplash.com'
-
-/**
- * 随机图片URL
- * @type {RegExp}
- */
-const RANDOM_URL = `${END_POINT_URL}/random`
+import urls from './urls'
 
 //TODO:添加错误处理
 /**
@@ -22,14 +11,10 @@ class Api {
    * @return {[string]} [Url]
    */
   static async getRandomImageUrl() {
-    let jsonData = await fetch(RANDOM_URL)
-    // jsonData = jsonData.json()
-    return jsonData.url
-  }
-  // static getRandomImageUrl() {
-  //   console.log(fetch('www.baidu.com'),RANDOM_URL,fetch)
-  //   return fetch(RANDOM_URL).then(res=>res.url)
-  // }
+      let jsonData = await fetch(urls.RANDOM_URL)
+        // jsonData = jsonData.json()
+      return jsonData.url
+    }
 
   /**
    * 请求URL返回JSON对象数据

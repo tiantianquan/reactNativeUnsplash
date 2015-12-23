@@ -2,15 +2,16 @@
 require('babel/register')
 var expect = require('expect.js')
 
-describe('api', function() {
+describe('Api', function() {
   var Api = require('../app/api')
-  it('get url return string', function() {
+  var fetch = require('isomorphic-fetch')
+  it('request url return string', function() {
     return Api.fetchTextData('http://www.baidu.com').then(function(res) {
       expect(res).to.be.a('string')
     })
   })
 
-  it('get url return json', function() {
+  it('request url return json', function() {
     this.timeout(100000)
     return Api.fetchJsonData('http://api.douban.com/v2/movie/in_theaters').then(
       function(res) {
@@ -18,11 +19,11 @@ describe('api', function() {
       })
   })
 
-  it('return image url', function() {
+  it('get reandom image url', function() {
     this.timeout(100000)
     return Api.getRandomImageUrl().then(function(res) {
       expect(res).to.be.a('string')
-      expect(res).to.contain('images.unsplash.com/')
+      expect(res).to.contain('images.unsplash.com')
     })
   })
 })

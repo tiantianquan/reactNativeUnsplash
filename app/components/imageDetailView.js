@@ -12,7 +12,7 @@ const SubjectView = React.createClass({
   render() {
     return (
       <View>
-
+        
       </View>
     )
   }
