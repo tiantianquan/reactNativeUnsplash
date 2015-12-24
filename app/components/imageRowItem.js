@@ -9,18 +9,22 @@ const{
   View,
   Image,
 } = React
+
+
+/**
+ * 若source={{uri:}} 中uri为空字符串,会引起app闪退
+ */
 const ImageRowItem = React.createClass({
   render () {
-    const {imageInfo} = this.props
+    const {pressImage,imageInfo,style} = this.props
     return (
-      <TouchableHighlight onPress={()=>{
-         }}>
-        <View>
+      <TouchableHighlight  onPress={()=>pressImage(imageInfo)}>
+        <View style={style}>
           <Image
-            source={{uri:imageInfo.urls.small}}
+            source={{uri:imageInfo.urls.regular?imageInfo.urls.regular:undefined}}
             style={{
               resizeMode:'cover',
-              height:300,
+              height:214,
               flex:1
             }}/>
           </View>

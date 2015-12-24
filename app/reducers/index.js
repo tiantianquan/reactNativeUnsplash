@@ -3,9 +3,11 @@ import { GET_PHOTOS, GET_PHOTO_BY_ID } from '../actions'
 
 const initialState = {
   homePhotoList: [{
-    urls:{samll:''}
+    urls:{small:''}
   }],
-  focusPhoto: {}
+  focusPhoto: {urls:{
+    small:''
+  },exif:{}}
 }
 
 function reducer(state = initialState, action) {

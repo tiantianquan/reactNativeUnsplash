@@ -6,6 +6,7 @@ import cssVar from 'cssVar'
 
 
 import ImageListView from '../components/imageListView'
+import ImageDetailView from '../components/imageDetailView'
 import actions from '../actions'
 
 const {
@@ -60,20 +61,40 @@ var NavigationBarRouteMapper = {
 
 
 const MainView = React.createClass({
-  componentWillMount(){
-    this.props.actions.getPhotosAsync()
+  _pressImage(imageInfo){
+    var nextIndex = this.route.index + 1;
+    this.props.actions.getPhotoByIdAsync(imageInfo.id)
+    this.navigator.push({
+      name:'focusPhoto',
+      index: nextIndex,
+    })
   },
-
   _renderScene(route,navigator){
     const {actions,homePhotoList,focusPhoto} = this.props
-    return <ImageListView homePhotoList={homePhotoList} />
+    this.route = route
+    this.navigator = navigator
+    // switch (route.name) {
+    //   case 'focusPhoto':
+    //   return  <ImageDetailView focusPhoto={focusPhoto} />
+    //   default:
+    //   return <ImageListView homePhotoList={homePhotoList} pressImage={this._pressImage} />
+    // }
+
+    // dev
+    return <ImageDetailView focusPhoto={focusPhoto}/>
+  },
+
+  componentWillMount(){
+    // this.props.actions.getPhotosAsync()
+    //dev
+    this.props.actions.getPhotoByIdAsync('YD1uvthZwg4')
   },
 
   render() {
     return (
       <Navigator
         ref="nav"
-        initialRoute={{name: 'subjectList', index: 0}}
+        initialRoute={{name: 'unsplash', index: 0}}
         navigationBar={
           <Navigator.NavigationBar
             routeMapper={NavigationBarRouteMapper}

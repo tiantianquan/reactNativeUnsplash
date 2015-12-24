@@ -3,13 +3,10 @@ import React from 'react-native'
 import ImageRowItem from './imageRowItem'
 
 const {
-  View,
   ListView,
   TouchableHighlight,
-  Image,
   StyleSheet,
   Text,
-  ScrollView,
   StatusBarIOS
 } = React
 
@@ -28,12 +25,14 @@ const ImageListView = React.createClass({
     StatusBarIOS.setHidden(true,'fade')
   },
 
+
   /**
    * 渲染列表项
    */
   _renderRow(rowData){
+    const {pressImage} = this.props
     return (
-      <ImageRowItem imageInfo={rowData}/>
+      <ImageRowItem imageInfo={rowData} pressImage={pressImage} />
       )
     },
 
