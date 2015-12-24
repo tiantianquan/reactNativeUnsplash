@@ -61,17 +61,18 @@ var NavigationBarRouteMapper = {
 
 const MainView = React.createClass({
   componentWillMount(){
-
-
+    this.props.actions.getPhotosAsync()
   },
 
   _renderScene(route,navigator){
-      return <ImageListView/>
+    const {actions,homePhotoList,focusPhoto} = this.props
+    return <ImageListView homePhotoList={homePhotoList} />
   },
 
   render() {
     return (
-          <Navigator ref="nav"
+      <Navigator
+        ref="nav"
         initialRoute={{name: 'subjectList', index: 0}}
         navigationBar={
           <Navigator.NavigationBar
@@ -134,8 +135,8 @@ var styles = StyleSheet.create({
 //redux配置
 function mapStateToProps(state) {
   return {
-    // intheaters:state.intheaters,
-    // movie:state.movie
+    homePhotoList:state.homePhotoList,
+    focusPhoto:state.focusPhoto,
   }
 }
 

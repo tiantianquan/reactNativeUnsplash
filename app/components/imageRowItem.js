@@ -9,17 +9,18 @@ const{
   View,
   Image,
 } = React
-const ImageCard = React.createClass({
+const ImageRowItem = React.createClass({
   render () {
+    const {imageInfo} = this.props
     return (
       <TouchableHighlight onPress={()=>{
          }}>
         <View>
           <Image
-            source={{uri:this.props.imageUrl}}
+            source={{uri:imageInfo.urls.small}}
             style={{
-              resizeMode:'contain',
-              height:200,
+              resizeMode:'cover',
+              height:300,
               flex:1
             }}/>
           </View>
@@ -28,4 +29,4 @@ const ImageCard = React.createClass({
   }
 })
 
-export default ImageCard
+export default ImageRowItem

@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react-native'
-import ImageCard from './imageCard'
+import ImageRowItem from './imageRowItem'
 
 const {
   View,
@@ -22,7 +22,7 @@ const ImageListView = React.createClass({
   },
 
   /**
-  * 隐藏状态栏与
+  * TODO:隐藏状态栏与导航栏
   */
   _hideStatusBar(){
     StatusBarIOS.setHidden(true,'fade')
@@ -33,7 +33,7 @@ const ImageListView = React.createClass({
    */
   _renderRow(rowData){
     return (
-      <ImageCard imageUrl={rowData}/>
+      <ImageRowItem imageInfo={rowData}/>
       )
     },
 
@@ -43,14 +43,10 @@ const ImageListView = React.createClass({
     },
 
     render() {
+      const {homePhotoList} = this.props
       return (
         <ListView
-          dataSource={this.ds.cloneWithRows([
-            'http://127.0.0.1:8080/1.jpeg',
-            'http://127.0.0.1:8080/2.jpeg',
-            'http://127.0.0.1:8080/3.jpeg',
-            'http://127.0.0.1:8080/1.jpeg'
-          ])}
+          dataSource={this.ds.cloneWithRows(homePhotoList)}
           renderRow={this._renderRow}
           style={ styles.imageListViewStyle }
           contentContainerStyle={{ alignItems: 'stretch' }}
