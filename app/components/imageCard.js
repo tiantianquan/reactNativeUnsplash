@@ -8,7 +8,6 @@ const{
   TouchableHighlight,
   View,
   Image,
-  PixelRatio
 } = React
 const ImageCard = React.createClass({
   render () {
@@ -17,10 +16,8 @@ const ImageCard = React.createClass({
          }}>
         <View>
           <Image
-            source={{uri:this.props.imageUrl,
-            }}
+            source={{uri:this.props.imageUrl}}
             style={{
-              // height:'auto',
               resizeMode:'contain',
               height:200,
               flex:1

@@ -1,21 +1,25 @@
 'use strict'
-import { Get_Intheaters, Get_Movie_By_Id } from '../actions'
+import {
+  GET_PHOTOS, GET_PHOTO_BY_ID, GET_USER_INFO_BY_USERNAME
+}
+from '../actions'
 
 const initialState = {
-  intheaters: [],
-  movie:{
-    image:''
-  }
+  homePhotoList: [],
+  focusPhoto: {
+    photoInfo:{},
+    userInfo:{}
+  },
 }
 
 function reducer(state = initialState, action) {
   switch(action.type) {
-    case Get_Intheaters:
+    case GET_PHOTOS:
       return {
         ...state,
         intheaters: action.data
       }
-    case Get_Movie_By_Id:
+    case GET_PHOTO_BY_ID:
       return {
         ...state,
         movie: action.data
