@@ -3,12 +3,10 @@ import React from 'react-native'
 import ImageRowItem from './imageRowItem'
 import BottomButton from './bottomButton'
 import ImageInfoModal from './imageInfoModal'
+import UserHead from './userHead'
 
 const {
   View,
-  ScrollView,
-  Text,
-  Image,
   StyleSheet,
   StatusBarIOS
 } = React
@@ -18,6 +16,7 @@ const ImageDetailView = React.createClass({
     /**
      * 设置状态栏颜色
      */
+    StatusBarIOS.setHidden(false,'fade')
     StatusBarIOS.setStyle('light-content',true)
   },
   getInitialState() {
@@ -35,6 +34,9 @@ const ImageDetailView = React.createClass({
     return (
       <View style={styles.container}>
         <ImageInfoModal imageInfo={focusPhoto} modalVisible={this.state.modalVisible}/>
+        <View style={styles.userHeadContainer}>
+        <UserHead avatarImageUrl={focusPhoto.user.profile_image.large} userName={focusPhoto.user.username}/>
+        </View>
         <View style={styles.imageContainer}>
           <ImageRowItem pressImage={this._handlePressImage} imageInfo={focusPhoto} />
         </View>
@@ -52,11 +54,15 @@ const styles = StyleSheet.create({
     flex:1,
     flexDirection:'column',
     backgroundColor:'#393939',
+    justifyContent:'space-between',
+  },
+  userHeadContainer:{
+    alignSelf:'center',
+    top:105
   },
   imageContainer:{
-    paddingTop:40,
-    flex:1,
-    justifyContent:'center',
+    // flex:1,
+    // justifyContent:'center',
   },
   bottomButtonContainer:{
     flex:0,

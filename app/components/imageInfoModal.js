@@ -27,43 +27,45 @@ const ImageInfoModal = React.createClass({
     return (
       <Modal
         animated={true}
-        // visible={this.state.modalVisible}
-        visible={true}
-        transparent={true} >
+        visible={this.state.modalVisible}
+        transparent={true}>
         <BlurView
           blurType="dark"
-          style={{  flex:1,
-            opacity:1}} >
-            <TouchableOpacity style={{flex:1}} onPress={()=>{this.setState({ modalVisible:false}) }}>
-              <View style={styles.textContainer}>
-                <ModalHeadText contentText="DIMENSONS"/>
-                <ModalSubText contentText={()=>`${imageInfo.width} X ${imageInfo.height}` }/>
-                <ModalHeadText contentText="CAMERA MAKE" />
-                <ModalSubText contentText={imageInfo.exif.make} />
-                <ModalHeadText contentText="CAMERA MODEL"/>
-                <ModalSubText contentText= {imageInfo.exif.model}/>
-                <ModalHeadText contentText="APERTURE"/>
-                <ModalSubText contentText= {imageInfo.exif.aperture}/>
-                <ModalHeadText  contentText="SHUTTER SPEED"/>
-                <ModalSubText  contentText= {()=>`${imageInfo.exif.exposure_time}s`}/>
-                <ModalHeadText  contentText="FOCAL LENGTH"/>
-                <ModalSubText  contentText= {()=>`${imageInfo.exif.focal_length}mm`}/>
-                <ModalHeadText  contentText="ISO"/>
-                <ModalSubText  contentText= {imageInfo.exif.iso}/>
-              </View>
-            </TouchableOpacity>
-          </BlurView>
-        </Modal>
-      )
-    }
-  })
+          style={{flex:1,opacity:1}} >
+          <TouchableOpacity
+            style={{flex:1}}
+            onPress={()=>{this.setState({ modalVisible:false}) }}>
+            <View
+              style={styles.textContainer}>
+              <ModalHeadText contentText="DIMENSONS"/>
+              <ModalSubText contentText={()=>`${imageInfo.width} X ${imageInfo.height}` }/>
+              <ModalHeadText contentText="CAMERA MAKE" />
+              <ModalSubText contentText={imageInfo.exif.make} />
+              <ModalHeadText contentText="CAMERA MODEL"/>
+              <ModalSubText contentText= {imageInfo.exif.model}/>
+              <ModalHeadText contentText="APERTURE"/>
+              <ModalSubText contentText= {imageInfo.exif.aperture}/>
+              <ModalHeadText  contentText="SHUTTER SPEED"/>
+              <ModalSubText  contentText= {()=>`${imageInfo.exif.exposure_time}s`}/>
+              <ModalHeadText  contentText="FOCAL LENGTH"/>
+              <ModalSubText  contentText= {()=>`${imageInfo.exif.focal_length}mm`}/>
+              <ModalHeadText  contentText="ISO"/>
+              <ModalSubText  contentText= {imageInfo.exif.iso}/>
+            </View>
+          </TouchableOpacity>
+        </BlurView>
+      </Modal>
+    )
+  }
+})
 
-  const styles = StyleSheet.create({
-    textContainer:{
-      flex:1,
-      justifyContent:'center',
-      left:36,
-    }
-  })
+const styles = StyleSheet.create({
+  textContainer:{
+    flex:1,
+    justifyContent:'center',
+    left:36,
+    top:0
+  }
+})
 
-  export default ImageInfoModal
+export default ImageInfoModal

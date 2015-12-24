@@ -28,6 +28,16 @@
 		18D9D4A81C2BC9C500225AD3 /* Material-Design-Iconic-Font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4A21C2BC9C500225AD3 /* Material-Design-Iconic-Font.ttf */; };
 		18D9D4A91C2BC9C500225AD3 /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4A31C2BC9C500225AD3 /* octicons.ttf */; };
 		18D9D4AA1C2BC9C500225AD3 /* zocial-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4A41C2BC9C500225AD3 /* zocial-regular-webfont.ttf */; };
+		18D9D4D11C2C21A600225AD3 /* Open Sans 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4C71C2C21A600225AD3 /* Open Sans 300.ttf */; };
+		18D9D4D21C2C21A600225AD3 /* Open Sans 300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4C81C2C21A600225AD3 /* Open Sans 300italic.ttf */; };
+		18D9D4D31C2C21A600225AD3 /* Open Sans 600.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4C91C2C21A600225AD3 /* Open Sans 600.ttf */; };
+		18D9D4D41C2C21A600225AD3 /* Open Sans 600italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4CA1C2C21A600225AD3 /* Open Sans 600italic.ttf */; };
+		18D9D4D51C2C21A600225AD3 /* Open Sans 700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4CB1C2C21A600225AD3 /* Open Sans 700.ttf */; };
+		18D9D4D61C2C21A600225AD3 /* Open Sans 700italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4CC1C2C21A600225AD3 /* Open Sans 700italic.ttf */; };
+		18D9D4D71C2C21A600225AD3 /* Open Sans 800.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4CD1C2C21A600225AD3 /* Open Sans 800.ttf */; };
+		18D9D4D81C2C21A600225AD3 /* Open Sans 800italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4CE1C2C21A600225AD3 /* Open Sans 800italic.ttf */; };
+		18D9D4D91C2C21A600225AD3 /* Open Sans italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4CF1C2C21A600225AD3 /* Open Sans italic.ttf */; };
+		18D9D4DA1C2C21A600225AD3 /* Open Sans regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18D9D4D01C2C21A600225AD3 /* Open Sans regular.ttf */; };
 		50B7CCC0C7BE4B818CA4D49E /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA31A4A9684F483EA4728DCF /* libRNBlur.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -153,6 +163,16 @@
 		18D9D4A21C2BC9C500225AD3 /* Material-Design-Iconic-Font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Material-Design-Iconic-Font.ttf"; path = "../node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/Material-Design-Iconic-Font.ttf"; sourceTree = "<group>"; };
 		18D9D4A31C2BC9C500225AD3 /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = octicons.ttf; path = "../node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/octicons.ttf"; sourceTree = "<group>"; };
 		18D9D4A41C2BC9C500225AD3 /* zocial-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zocial-regular-webfont.ttf"; path = "../node_modules/react-native-icons/ios/ReactNativeIcons/Libraries/FontAwesomeKit/zocial-regular-webfont.ttf"; sourceTree = "<group>"; };
+		18D9D4C71C2C21A600225AD3 /* Open Sans 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans 300.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans 300.ttf"; sourceTree = "<group>"; };
+		18D9D4C81C2C21A600225AD3 /* Open Sans 300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans 300italic.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans 300italic.ttf"; sourceTree = "<group>"; };
+		18D9D4C91C2C21A600225AD3 /* Open Sans 600.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans 600.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans 600.ttf"; sourceTree = "<group>"; };
+		18D9D4CA1C2C21A600225AD3 /* Open Sans 600italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans 600italic.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans 600italic.ttf"; sourceTree = "<group>"; };
+		18D9D4CB1C2C21A600225AD3 /* Open Sans 700.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans 700.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans 700.ttf"; sourceTree = "<group>"; };
+		18D9D4CC1C2C21A600225AD3 /* Open Sans 700italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans 700italic.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans 700italic.ttf"; sourceTree = "<group>"; };
+		18D9D4CD1C2C21A600225AD3 /* Open Sans 800.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans 800.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans 800.ttf"; sourceTree = "<group>"; };
+		18D9D4CE1C2C21A600225AD3 /* Open Sans 800italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans 800italic.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans 800italic.ttf"; sourceTree = "<group>"; };
+		18D9D4CF1C2C21A600225AD3 /* Open Sans italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans italic.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans italic.ttf"; sourceTree = "<group>"; };
+		18D9D4D01C2C21A600225AD3 /* Open Sans regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans regular.ttf"; path = "../../../../Library/Fonts/skyfonts-google/Open Sans regular.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		BA31A4A9684F483EA4728DCF /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
@@ -300,6 +320,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		18D9D4C61C2C212800225AD3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				18D9D4C71C2C21A600225AD3 /* Open Sans 300.ttf */,
+				18D9D4C81C2C21A600225AD3 /* Open Sans 300italic.ttf */,
+				18D9D4C91C2C21A600225AD3 /* Open Sans 600.ttf */,
+				18D9D4CA1C2C21A600225AD3 /* Open Sans 600italic.ttf */,
+				18D9D4CB1C2C21A600225AD3 /* Open Sans 700.ttf */,
+				18D9D4CC1C2C21A600225AD3 /* Open Sans 700italic.ttf */,
+				18D9D4CD1C2C21A600225AD3 /* Open Sans 800.ttf */,
+				18D9D4CE1C2C21A600225AD3 /* Open Sans 800italic.ttf */,
+				18D9D4CF1C2C21A600225AD3 /* Open Sans italic.ttf */,
+				18D9D4D01C2C21A600225AD3 /* Open Sans regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +375,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				18D9D4C61C2C212800225AD3 /* Fonts */,
 				18D9D49F1C2BC9C500225AD3 /* FontAwesome.otf */,
 				18D9D4A01C2BC9C500225AD3 /* foundation-icons.ttf */,
 				18D9D4A11C2BC9C500225AD3 /* ionicons.ttf */,
@@ -584,14 +622,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D9D4D71C2C21A600225AD3 /* Open Sans 800.ttf in Resources */,
+				18D9D4D31C2C21A600225AD3 /* Open Sans 600.ttf in Resources */,
 				18D9D4A51C2BC9C500225AD3 /* FontAwesome.otf in Resources */,
+				18D9D4D41C2C21A600225AD3 /* Open Sans 600italic.ttf in Resources */,
+				18D9D4D21C2C21A600225AD3 /* Open Sans 300italic.ttf in Resources */,
 				18D9D4A61C2BC9C500225AD3 /* foundation-icons.ttf in Resources */,
 				18D9D4A71C2BC9C500225AD3 /* ionicons.ttf in Resources */,
+				18D9D4D11C2C21A600225AD3 /* Open Sans 300.ttf in Resources */,
+				18D9D4D81C2C21A600225AD3 /* Open Sans 800italic.ttf in Resources */,
+				18D9D4D91C2C21A600225AD3 /* Open Sans italic.ttf in Resources */,
 				18D9D4A81C2BC9C500225AD3 /* Material-Design-Iconic-Font.ttf in Resources */,
 				18D9D4A91C2BC9C500225AD3 /* octicons.ttf in Resources */,
+				18D9D4DA1C2C21A600225AD3 /* Open Sans regular.ttf in Resources */,
 				18D9D4AA1C2BC9C500225AD3 /* zocial-regular-webfont.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				18D9D4D51C2C21A600225AD3 /* Open Sans 700.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				18D9D4D61C2C21A600225AD3 /* Open Sans 700italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

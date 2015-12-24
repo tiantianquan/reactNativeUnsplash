@@ -21,11 +21,11 @@ const ModalHeadText = React.createClass({
 
 const styles = StyleSheet.create({
   textStyle:{
-    // fontFamily:'Roboto',
+    fontFamily:'Open Sans',
     fontSize:24,
     fontWeight:'bold',
     color:'#ccc',
-    marginBottom:2,
+    marginBottom:5,
   }
 })
 

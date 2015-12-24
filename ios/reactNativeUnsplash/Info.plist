@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Open Sans 300.ttf</string>
+		<string>Open Sans 300italic.ttf</string>
+		<string>Open Sans 600italic.ttf</string>
+		<string>Open Sans 600.ttf</string>
+		<string>Open Sans 700italic.ttf</string>
+		<string>Open Sans 700.ttf</string>
+		<string>Open Sans 800italic.ttf</string>
+		<string>Open Sans 800.ttf</string>
+		<string>Open Sans italic.ttf</string>
+		<string>Open Sans regular.ttf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -38,11 +51,10 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-  <key>NSAppTransportSecurity</key>
-  <dict>
-    <!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-  </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

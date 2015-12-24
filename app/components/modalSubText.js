@@ -21,10 +21,11 @@ const ModalSubText = React.createClass({
 
 const styles = StyleSheet.create({
   textStyle:{
+    fontFamily:'Open Sans',
     fontSize:21,
     fontWeight:'bold',
     color:'#ccc',
-    marginBottom:10
+    marginBottom:5,
   }
 })
 

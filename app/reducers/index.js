@@ -1,17 +1,26 @@
 'use strict'
-import { GET_PHOTOS, GET_PHOTO_BY_ID } from '../actions'
+import {
+  GET_PHOTOS, GET_PHOTO_BY_ID
+}
+from '../actions'
 
 const initialState = {
   homePhotoList: [{
-    urls:{small:''}
+    urls: {
+      small: ''
+    }
   }],
-  focusPhoto: {urls:{
-    small:''
-  },exif:{}}
+  focusPhoto: {
+    urls: {
+      small: ''
+    },
+    exif: {},
+    user:{profile_image: {}}
+  }
 }
 
 function reducer(state = initialState, action) {
-  switch (action.type) {
+  switch(action.type) {
     case GET_PHOTOS:
       return {
         ...state,
