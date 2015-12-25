@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   textStyle:{
     fontFamily:'Open Sans',
     fontSize:21,
-    fontWeight:'bold',
+    fontWeight:'100',
     color:'#ccc',
     marginBottom:5,
   }

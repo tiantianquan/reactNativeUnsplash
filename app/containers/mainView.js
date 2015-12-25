@@ -2,6 +2,7 @@
 import React from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux/native'
+import { Icon } from 'react-native-icons'
 import cssVar from 'cssVar'
 
 
@@ -11,14 +12,12 @@ import actions from '../actions'
 
 const {
   // NavigatorIOS,
-  Image,
   Navigator,
   StyleSheet,
   Text,
   TouchableOpacity,
   PixelRatio,
-  ScrollView,
-  Animated
+  View
 } = React
 
 var NavigationBarRouteMapper = {
@@ -31,21 +30,24 @@ var NavigationBarRouteMapper = {
       <TouchableOpacity
         onPress={() => navigator.pop()}
         style={styles.navBarLeftButton}>
-        <Text style={[styles.navBarText, styles.navBarButtonText]}>
-          {previousRoute.name}
-        </Text>
+        <Icon
+          name="fontawesome|angle-left"
+          size={30}
+          color="#ccc"
+          style={styles.leftIcon} />
       </TouchableOpacity>
     );
   },
   RightButton: function(route, navigator, index, navState) {
     return (
-      <TouchableOpacity
-        onPress={()=>{}}
-        style={styles.navBarRightButton}>
-        <Text style={[styles.navBarText, styles.navBarButtonText]}>
-          Next
-        </Text>
-      </TouchableOpacity>
+      <View></View>
+      // <TouchableOpacity
+      //   onPress={()=>{}}
+      //   style={styles.navBarRightButton}>
+      //   <Text style={[styles.navBarText, styles.navBarButtonText]}>
+      //     Next
+      //   </Text>
+      // </TouchableOpacity>
     );
   },
 
@@ -65,7 +67,7 @@ const MainView = React.createClass({
     var nextIndex = this.route.index + 1;
     this.props.actions.getPhotoByIdAsync(imageInfo.id)
     this.navigator.push({
-      name:'focusPhoto',
+      name:'unsplash',
       index: nextIndex,
     })
   },
@@ -73,28 +75,28 @@ const MainView = React.createClass({
     const {actions,homePhotoList,focusPhoto} = this.props
     this.route = route
     this.navigator = navigator
-    // switch (route.name) {
-    //   case 'focusPhoto':
-    //   return  <ImageDetailView focusPhoto={focusPhoto} />
-    //   default:
-    //   return <ImageListView homePhotoList={homePhotoList} pressImage={this._pressImage} />
-    // }
+    switch (route.name) {
+      case 'unsplash':
+      return  <ImageDetailView focusPhoto={focusPhoto} />
+      default:
+      return <ImageListView homePhotoList={homePhotoList} pressImage={this._pressImage} />
+    }
 
     // dev
-    return <ImageDetailView focusPhoto={focusPhoto}/>
+    // return <ImageDetailView focusPhoto={focusPhoto}/>
   },
 
   componentWillMount(){
-    // this.props.actions.getPhotosAsync()
+    this.props.actions.getPhotosAsync()
     //dev
-    this.props.actions.getPhotoByIdAsync('YD1uvthZwg4')
+    // this.props.actions.getPhotoByIdAsync('YD1uvthZwg4')
   },
 
   render() {
     return (
       <Navigator
         ref="nav"
-        initialRoute={{name: 'unsplash', index: 0}}
+        initialRoute={{name: '', index: 0}}
         navigationBar={
           <Navigator.NavigationBar
             routeMapper={NavigationBarRouteMapper}
@@ -107,6 +109,11 @@ const MainView = React.createClass({
 })
 
 var styles = StyleSheet.create({
+  leftIcon:{
+    flex:1,
+    height:44,
+    width:30,
+  },
   messageText: {
     fontSize: 17,
     fontWeight: '500',
@@ -128,12 +135,13 @@ var styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   navBarText: {
-    fontSize: 16,
+    fontSize: 17,
     marginVertical: 10,
   },
   navBarTitleText: {
-    color: cssVar('fbui-bluegray-60'),
-    fontWeight: '500',
+    fontFamily:'Open Sans',
+    fontWeight:'100',
+    color: '#ccc',
     marginVertical: 9,
   },
   navBarLeftButton: {
@@ -149,6 +157,7 @@ var styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     backgroundColor: '#EAEAEA',
+    // jkl:1
   },
 });
 

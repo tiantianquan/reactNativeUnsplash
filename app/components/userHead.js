@@ -13,7 +13,7 @@ const UserHead = React.createClass({
   render () {
     const {avatarImageUrl,userName} = this.props
     return (
-      <View >
+      <View>
         <TouchableOpacity style={styles.container}>
         <Image style={styles.avatar}
           source={{uri:avatarImageUrl}}

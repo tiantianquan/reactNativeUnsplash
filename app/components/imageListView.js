@@ -35,12 +35,10 @@ const ImageListView = React.createClass({
       <ImageRowItem imageInfo={rowData} pressImage={pressImage} />
       )
     },
-
     componentWillMount() {
       this._bindDatatSource()
       this._hideStatusBar()
     },
-
     render() {
       const {homePhotoList} = this.props
       return (

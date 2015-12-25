@@ -31,11 +31,12 @@ const ImageDetailView = React.createClass({
   },
   render() {
     const {focusPhoto} = this.props
+    let avatarImageUrl = focusPhoto.user.profile_image.large
     return (
       <View style={styles.container}>
         <ImageInfoModal imageInfo={focusPhoto} modalVisible={this.state.modalVisible}/>
         <View style={styles.userHeadContainer}>
-        <UserHead avatarImageUrl={focusPhoto.user.profile_image.large} userName={focusPhoto.user.username}/>
+        <UserHead avatarImageUrl={avatarImageUrl} userName={focusPhoto.user.username}/>
         </View>
         <View style={styles.imageContainer}>
           <ImageRowItem pressImage={this._handlePressImage} imageInfo={focusPhoto} />

@@ -24,7 +24,8 @@ const ImageRowItem = React.createClass({
             source={{uri:imageInfo.urls.regular?imageInfo.urls.regular:undefined}}
             style={{
               resizeMode:'cover',
-              height:214,
+              height: 375 / imageInfo.width * imageInfo.height,
+              maxHeight:500,
               flex:1
             }}/>
           </View>
