@@ -31,7 +31,7 @@ const ImageInfoModal = React.createClass({
         transparent={true}>
         <BlurView
           blurType="dark"
-          style={{flex:1,opacity:1}} >
+          style={{flex:1}} >
           <TouchableOpacity
             style={{flex:1}}
             onPress={()=>{this.setState({ modalVisible:false}) }}>

@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react-native'
+import {BlurView,VibrancyView} from 'react-native-blur'
 import ImageRowItem from './imageRowItem'
 import BottomButton from './bottomButton'
 import ImageInfoModal from './imageInfoModal'
@@ -8,14 +9,15 @@ import UserHead from './userHead'
 const {
   View,
   StyleSheet,
-  StatusBarIOS
+  StatusBarIOS,
+  Image
 } = React
 
 const ImageDetailView = React.createClass({
   componentWillMount() {
     /**
-     * 设置状态栏颜色
-     */
+    * 设置状态栏颜色
+    */
     StatusBarIOS.setHidden(false,'fade')
     StatusBarIOS.setStyle('light-content',true)
   },
@@ -34,41 +36,61 @@ const ImageDetailView = React.createClass({
     let avatarImageUrl = focusPhoto.user.profile_image.large
     return (
       <View style={styles.container}>
-        <ImageInfoModal imageInfo={focusPhoto} modalVisible={this.state.modalVisible}/>
-        <View style={styles.userHeadContainer}>
-        <UserHead avatarImageUrl={avatarImageUrl} userName={focusPhoto.user.username}/>
-        </View>
-        <View style={styles.imageContainer}>
-          <ImageRowItem pressImage={this._handlePressImage} imageInfo={focusPhoto} />
-        </View>
-        <View style={styles.bottomButtonContainer}>
-          <BottomButton iconName="fontawesome|heart-o" color="#FF6868"/>
-          <BottomButton iconName="fontawesome|share" color="#ccc"/>
-        </View>
-      </View>
-    )
-  }
-})
+        <ImageInfoModal
+          imageInfo={focusPhoto}
+          modalVisible={this.state.modalVisible}/>
+        <Image
+          source={{uri:focusPhoto.urls.regular}}
+          style={{flex:1,resizeMode:'cover',}} >
+          <BlurView
+            blurType="dark"
+            style={{flex:1,flexDirection:'column',
+              justifyContent:'space-between'}}>
 
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    flexDirection:'column',
-    backgroundColor:'#393939',
-    justifyContent:'space-between',
-  },
-  userHeadContainer:{
-    alignSelf:'center',
-    top:105
-  },
-  imageContainer:{
-    // flex:1,
-    // justifyContent:'center',
-  },
-  bottomButtonContainer:{
-    flex:0,
-    flexDirection:'row'
-  }
-})
+              <View style={styles.userHeadContainer}>
+                <UserHead
+                  avatarImageUrl={avatarImageUrl}
+                  userName={focusPhoto.user.username}/>
+              </View>
+              <View style={styles.imageContainer}>
+                <ImageRowItem
+                  pressImage={this._handlePressImage}
+                  imageInfo={focusPhoto} />
+              </View>
+              <View style={styles.bottomButtonContainer}>
+                <BottomButton
+                  iconName="fontawesome|heart-o"
+                  color="#FF6868"/>
+                <BottomButton
+                  iconName="fontawesome|share"
+                  color="#ccc"/>
+              </View>
+            </BlurView>
+          </Image>
+        </View>
+      )
+    }
+  })
 
-export default ImageDetailView
+  const styles = StyleSheet.create({
+    container:{
+      flex:1,
+      flexDirection:'column',
+      backgroundColor:'#393939',
+      justifyContent:'space-between',
+    },
+    userHeadContainer:{
+      alignSelf:'center',
+      top:105
+    },
+    imageContainer:{
+      // flex:1,
+      // justifyContent:'center',
+    },
+    bottomButtonContainer:{
+      flex:0,
+      flexDirection:'row'
+    }
+  })
+
+  export default ImageDetailView

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     height:44,
-    backgroundColor:'#555',
+    backgroundColor:'rgba(85,85,85,0.5)',
     opacity:0.8
   },
   icon:{
