@@ -15,11 +15,11 @@ const UserHead = React.createClass({
     return (
       <View>
         <TouchableOpacity style={styles.container}>
-        <Image style={styles.avatar}
-          source={{uri:avatarImageUrl}}
-          />
-        <Text style={styles.userName}>{userName}</Text>
-      </TouchableOpacity>
+          <Image style={styles.avatar}
+            source={{uri:avatarImageUrl}}
+            />
+          <Text style={styles.userName}>{userName}</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -28,13 +28,14 @@ const UserHead = React.createClass({
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    alignItems:'center'
+    alignItems:'center',
+    flexDirection:'row'
   },
   avatar:{
-    borderRadius:25,
-    height:50,
-    width:50,
-    marginBottom:7
+    borderRadius:15,
+    height:30,
+    width:30,
+    marginRight:5
   },
   userName:{
     fontSize:12,

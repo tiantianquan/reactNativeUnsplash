@@ -44,53 +44,73 @@ const ImageDetailView = React.createClass({
           style={{flex:1,resizeMode:'cover',}} >
           <BlurView
             blurType="dark"
-            style={{flex:1,flexDirection:'column',
-              justifyContent:'space-between'}}>
+            style={{flex:1}}>
 
-              <View style={styles.userHeadContainer}>
-                <UserHead
-                  avatarImageUrl={avatarImageUrl}
-                  userName={focusPhoto.user.username}/>
-              </View>
+            <View style={styles.innerContainer}>
+
               <View style={styles.imageContainer}>
                 <ImageRowItem
                   pressImage={this._handlePressImage}
                   imageInfo={focusPhoto} />
               </View>
-              <View style={styles.bottomButtonContainer}>
-                <BottomButton
-                  iconName="fontawesome|heart-o"
-                  color="#FF6868"/>
-                <BottomButton
-                  iconName="fontawesome|share"
-                  color="#ccc"/>
+
+              <View style={styles.bottomContainer}>
+                <View style={styles.userHeadContainer}>
+                  <UserHead
+                    avatarImageUrl={avatarImageUrl}
+                    userName={focusPhoto.user.username}/>
+                </View>
+
+                <View style={styles.bottomButtonContainer}>
+                  <BottomButton
+                    iconName="fontawesome|heart-o"
+                    color="#FF6868"/>
+                  <BottomButton
+                    iconName="fontawesome|share"
+                    color="#ccc"/>
+                </View>
               </View>
-            </BlurView>
-          </Image>
-        </View>
-      )
-    }
-  })
 
-  const styles = StyleSheet.create({
-    container:{
-      flex:1,
-      flexDirection:'column',
-      backgroundColor:'#393939',
-      justifyContent:'space-between',
-    },
-    userHeadContainer:{
-      alignSelf:'center',
-      top:105
-    },
-    imageContainer:{
-      // flex:1,
-      // justifyContent:'center',
-    },
-    bottomButtonContainer:{
-      flex:0,
-      flexDirection:'row'
-    }
-  })
+            </View>
 
-  export default ImageDetailView
+
+          </BlurView>
+        </Image>
+      </View>
+    )
+  }
+})
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    flexDirection:'column',
+    backgroundColor:'#393939',
+  },
+  innerContainer:{
+    flex:1,
+    flexDirection:'column',
+  },
+  bottomContainer:{
+    position:'absolute',
+    bottom:0,
+    //无法使用 width:100%, 使用 left right 0 控制 absolute 元素大小
+    left:0,
+    right:0,
+  },
+  userHeadContainer:{
+    alignSelf:'flex-end',
+    marginRight:10,
+    marginBottom:10
+  },
+  imageContainer:{
+    flex:1,
+    flexDirection:'column',
+    justifyContent:'center'
+  },
+  bottomButtonContainer:{
+    flexDirection:'row',
+  }
+})
+
+export default ImageDetailView
