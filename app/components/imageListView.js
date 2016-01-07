@@ -42,7 +42,26 @@ const ImageListView = React.createClass({
 
   _onScrollBottom(){
     this.props.onScrollBottom()
+    this.setState({
+      ...this.state,
+      loadState:'loading'
+    })
   },
+
+  _handleScroll(e){
+    this.setState({
+      ...this.state,
+      scrollEndDis:e.nativeEvent.contentOffset.y+e.nativeEvent.layoutMeasurement.height-e.nativeEvent.contentSize.height})
+  },
+
+  getInitialState: function() {
+    return {
+      scrollEndDis: 0,
+      endReachedThreshold:-100,
+      loadState:'loadBefore'
+    };
+  },
+
   componentWillMount() {
     this._bindDatatSource()
     this._hideStatusBar()
@@ -51,15 +70,16 @@ const ImageListView = React.createClass({
     const {homePhotoList} = this.props
     return (
       <View style={{flex:1}}>
+        <LoadIcon loadState={this.state.loadState}  scrollEndDis={this.state.scrollEndDis} endReachedThreshold={this.state.endReachedThreshold} />
         <ListView
-          onEndReachedThreshold={-100}
+          onScroll={this._handleScroll}
+          onEndReachedThreshold={this.state.endReachedThreshold}
           onEndReached={this._onScrollBottom}
           dataSource={this.ds.cloneWithRows(homePhotoList)}
           renderRow={this._renderRow}
-          style={ styles.imageListViewStyle }
+          style={ [styles.imageListViewStyle,this.state.loadState==='loading'?styles.loading:{}] }
           contentContainerStyle={{ alignItems: 'stretch' }}
           />
-        <LoadIcon />
       </View>
     )
   }
@@ -69,7 +89,9 @@ let styles = StyleSheet.create({
   imageListViewStyle:{
     flex:1,
   },
-
+  loading:{
+    marginBottom:50
+  }
 })
 
 export default ImageListView

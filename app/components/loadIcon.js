@@ -1,63 +1,108 @@
 'use strict'
 import React from 'react-native'
 import {Icon} from 'react-native-icons'
+import TimerMixin from 'react-timer-mixin'
 
-const {View, Animated,ScrollView} = React
+
+const { View, Animated, ScrollView } = React
+
+/**
+ * props
+ * endReachedDis
+ * scrollEndDis
+ * loadState
+ */
 
 const LoadIcon = React.createClass({
-  getInitialState() {
-    return {
-       fadeAnim: new Animated.Value(0), // init opacity 0
-       scaleAnim:new Animated.Value(0),
-       rotateAnim:new Animated.Value(0)
+  mixins: [TimerMixin],
+
+  /**
+   * 载入前执行
+   */
+  _handleLoadBefore(){
+    const dis =  this.props.scrollEndDis
+    if ( dis > 0 ){
+      const endReachedDis = -this.props.endReachedThreshold
+      const ratio = dis / endReachedDis
+      for(let i in this.state.anim){
+        Animated.timing(this.state.anim[i], {
+          toValue: ratio,
+          duration:0
+        }).start()
+      }
     }
   },
 
-   componentDidMount() {
-     Animated.timing(this.state.scaleAnim,
-       {
-         toValue: 1,
-         duration: 2000,
-       },
-     ).start()
-     Animated.timing(this.state.fadeAnim,
-       {
-         toValue: 1,
-         duration: 2000,
-       },
-     ).start()
-     Animated.timing(this.state.rotateAnim,
-       {
-         toValue: 1,
-         duration: 2000,
-       },
-     ).start()
+  /**
+   * 载入中执行
+   */
+  _handleLoading(){
+    this.setInterval(()=>{
+      this.setState({
+        anim:{
+          opacity:new Animated.Value(1),
+          scale:new Animated.Value(1),
+          rotate:new Animated.Value(1)
+        }
+      })
+      Animated.timing(this.state.anim.rotate, {
+        toValue: 0,
+        duration:1000,
+      }).start()
+    },1000)
+  },
+
+  getInitialState() {
+    return {
+      anim:{
+        opacity:new Animated.Value(0),
+        scale:new Animated.Value(0),
+        rotate:new Animated.Value(0)
+      }
+    }
+  },
+
+  componentWillReceiveProps(nextProps) {
+    const loadState = nextProps.loadState
+      if (loadState === 'loadBefore'){
+        this._handleLoadBefore()
+      }
+      if (this.props.loadState!== nextProps.loadState&& loadState === 'loading'){
+        this._handleLoading()
+      }
    },
 
   render() {
     return (
+
       <View style= {styles.container}>
         <Animated.View style={{
-            opacity:this.state.fadeAnim,
-            transform: [   // Array order matters
-              {scale:this.state.scaleAnim},
-              {rotate: this.state.rotateAnim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [ '0deg', '360deg'],
-                })
-              }
-            ],
-            }}>
+            opacity:this.state.anim.opacity.interpolate({
+              inputRange: [0, 1],
+              outputRange: [ 0, 1],
+            }),
+            transform: [
+              {scale: this.state.anim.scale.interpolate({
+                inputRange: [0, 1],
+                outputRange: [ 0, 1],
+              })},
+              {rotate: this.state.anim.rotate.interpolate({
+                inputRange: [0, 1],
+                outputRange: [ '0deg', '360deg'],
+              })},
+            ]
+          }}>
           <Icon
             name="ion|load-c"
-            size={20}
+            size={50}
             color="#000"
             style={styles.icon}/>
-          </Animated.View>
-        </View>
-      )
-    }
+        </Animated.View>
+      </View>
+    )
+  }
   })
+
 
   const styles = {
     container:{
@@ -77,9 +122,9 @@ const LoadIcon = React.createClass({
     },
     icon:{
       opacity:0.5,
-      width: 20,
-      height: 20,
-      marginBottom:5
+      width: 50,
+      height: 50,
+      marginBottom:0
     }
   }
   export default LoadIcon
