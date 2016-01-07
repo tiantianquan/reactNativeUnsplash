@@ -45,15 +45,28 @@ const ImageListView = React.createClass({
   },
 
   _handleScroll(e){
-    this.setState({
-      ...this.state,
-      scrollEndDis:e.nativeEvent.contentOffset.y+e.nativeEvent.layoutMeasurement.height-e.nativeEvent.contentSize.height})
+    let dis  =e.nativeEvent.contentOffset.y+e.nativeEvent.layoutMeasurement.height-e.nativeEvent.contentSize.height
+    if(dis > 0){
+      this.setState({
+        ...this.state,
+        scrollEndDis:dis,
+        scrollEventThrottle:0
+      })
+    }else{
+      this.setState({
+        ...this.state,
+        scrollEndDis:dis,
+        scrollEventThrottle:1000
+      })
+    }
   },
 
   getInitialState: function() {
     return {
       scrollEndDis: 0,
       endReachedThreshold:-100,
+      scrollEventThrottle:1000
+
     };
   },
 
@@ -67,7 +80,7 @@ const ImageListView = React.createClass({
       <View style={{flex:1}}>
         <LoadIcon loadState={homePhotoListState}  scrollEndDis={this.state.scrollEndDis} endReachedThreshold={this.state.endReachedThreshold} />
         <ListView
-          scrollEventThrottle={150}
+          scrollEventThrottle={this.state.scrollEventThrottle}
           onScroll={this._handleScroll}
           onEndReachedThreshold={this.state.endReachedThreshold}
           onEndReached={this._onScrollBottom}

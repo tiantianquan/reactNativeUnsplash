@@ -25,20 +25,39 @@ const LoadIcon = React.createClass({
     if ( dis > 0 ){
       const endReachedDis = -this.props.endReachedThreshold
       const ratio = dis / endReachedDis
-      for(let i in this.state.anim){
-        Animated.timing(this.state.anim[i], {
-          toValue: ratio,
-          duration:300
-        }).start()
-      }
-    }else{
-      for(let i in this.state.anim){
-        Animated.timing(this.state.anim[i], {
-          toValue: 0,
-          duration:1000
-        }).start()
-      }
+      // for(let i in this.state.anim){
+      //   Animated.timing(this.state.anim[i], {
+      //     toValue: ratio,
+      //     duration:300
+      //   }).start()
+      // }
+      this.setState({
+        ...this.state,
+        pull:{
+          opacity:ratio,
+          scale:ratio,
+          rotate:ratio*360
+        }
+      })
     }
+    else{
+      this.setState({
+        ...this.state,
+        pull:{
+          opacity:0,
+          scale:0,
+          rotate:0
+        }
+      })
+    }
+    // else{
+    //   for(let i in this.state.anim){
+    //     Animated.timing(this.state.anim[i], {
+    //       toValue: 0,
+    //       duration:1000
+    //     }).start()
+    //   }
+    // }
   },
 
   /**
@@ -46,14 +65,17 @@ const LoadIcon = React.createClass({
    */
   _handleLoading(){
     this.inter = setInterval(()=>{
-      this.setState({
-        anim:{
-          opacity:new Animated.Value(1),
-          scale:new Animated.Value(1),
-          rotate:new Animated.Value(1)
-        }
-      })
-      Animated.spring(this.state.anim.rotate, {
+      // this.setState({
+      //   anim:{
+      //     opacity:new Animated.Value(1),
+      //     scale:new Animated.Value(1),
+      //     rotate:new Animated.Value(1)
+      //   }
+      // })
+      for(let i in this.state.anim){
+        this.state.anim[i].setValue(1)
+      }
+      Animated.timing(this.state.anim.rotate, {
         toValue: 0,
         duration:1000,
       }).start()
@@ -69,6 +91,11 @@ const LoadIcon = React.createClass({
         opacity:new Animated.Value(0),
         scale:new Animated.Value(0),
         rotate:new Animated.Value(0)
+      },
+      pull:{
+        opacity:0,
+        scale:0,
+        rotate:0
       }
     }
   },
@@ -77,21 +104,17 @@ const LoadIcon = React.createClass({
     const loadState = nextProps.loadState
       if (loadState === 'loadBefore'){
         this._handleLoadBefore()
-      }
-      if (this.props.loadState!== nextProps.loadState&& loadState === 'loading'){
+      }else if (this.props.loadState!== nextProps.loadState&& loadState === 'loading'){
         this._handleLoading()
-      }
-
-      if (this.props.loadState!== nextProps.loadState && loadState === 'loadSuccess'){
+      }else if (this.props.loadState!== nextProps.loadState && loadState === 'loadSuccess'){
         this._handleLoadSuccess()
       }
    },
 
   render() {
     return (
-
       <View style= {styles.container}>
-        <Animated.View style={{
+        <Animated.View style={ this.props.loadState === 'loading'?{
             opacity:this.state.anim.opacity.interpolate({
               inputRange: [0, 1],
               outputRange: [ 0, 1],
@@ -106,7 +129,13 @@ const LoadIcon = React.createClass({
                 outputRange: [ '0deg', '360deg'],
               })},
             ]
-          }}>
+          }:{
+              opacity:this.state.pull.opacity,
+              transform: [
+                {scale: this.state.pull.scale},
+                {rotate: this.state.pull.rotate+'deg'},
+              ]
+            }}>
           <Icon
             name="ion|load-c"
             size={50}
