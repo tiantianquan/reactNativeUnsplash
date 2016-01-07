@@ -5,6 +5,10 @@ import {
 from '../actions'
 
 const initialState = {
+  homePageParams:{
+    page:1,
+    perPage:10
+  },
   homePhotoList: [{
     urls: {
       small: ''
@@ -24,7 +28,11 @@ function reducer(state = initialState, action) {
     case GET_PHOTOS:
       return {
         ...state,
-        homePhotoList: action.data
+        homePageParams:{
+          ...state.homePageParams,
+          page:state.homePageParams.page+1
+        },
+        homePhotoList: state.homePhotoList.concat(action.data)
       }
     case GET_PHOTO_BY_ID:
       return {

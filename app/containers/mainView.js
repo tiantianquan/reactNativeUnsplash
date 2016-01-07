@@ -41,13 +41,6 @@ var NavigationBarRouteMapper = {
   RightButton: function(route, navigator, index, navState) {
     return (
       <View></View>
-      // <TouchableOpacity
-      //   onPress={()=>{}}
-      //   style={styles.navBarRightButton}>
-      //   <Text style={[styles.navBarText, styles.navBarButtonText]}>
-      //     Next
-      //   </Text>
-      // </TouchableOpacity>
     );
   },
 
@@ -79,15 +72,18 @@ const MainView = React.createClass({
       case 'unsplash':
       return  <ImageDetailView focusPhoto={focusPhoto} />
       default:
-      return <ImageListView homePhotoList={homePhotoList} pressImage={this._pressImage} />
+      return <ImageListView onScrollBottom={this._onScrollBottom} homePhotoList={homePhotoList} pressImage={this._pressImage} />
     }
 
     // dev
     // return <ImageDetailView focusPhoto={focusPhoto}/>
   },
+  _onScrollBottom(){
+    this.props.actions.getPhotosAsync(this.props.homePageParams.page,this.props.homePageParams.perPage)
+  },
 
   componentWillMount(){
-    this.props.actions.getPhotosAsync()
+    this.props.actions.getPhotosAsync(1,10)
     //dev
     // this.props.actions.getPhotoByIdAsync('YD1uvthZwg4')
   },
@@ -167,6 +163,7 @@ function mapStateToProps(state) {
   return {
     homePhotoList:state.homePhotoList,
     focusPhoto:state.focusPhoto,
+    homePageParams:state.homePageParams
   }
 }
 

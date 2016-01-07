@@ -9,9 +9,9 @@ export const GET_USER_INFO_BY_USERNAME = 'GET_USERINFO_BY_USERNAME'
 /**
  * 获取图片
  */
-function getPhotosAsync() {
+function getPhotosAsync(page, per_page) {
   return async function(dispatch) {
-    let data = await Api.getPhotos()
+    let data = await Api.getPhotos(page, per_page)
     dispatch(getPhotos(data))
   }
 }
