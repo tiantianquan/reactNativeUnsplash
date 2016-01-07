@@ -51,7 +51,6 @@ const ImageListView = React.createClass({
     const {homePhotoList} = this.props
     return (
       <View style={{flex:1}}>
-        <LoadIcon />
         <ListView
           onEndReachedThreshold={-100}
           onEndReached={this._onScrollBottom}
@@ -60,6 +59,7 @@ const ImageListView = React.createClass({
           style={ styles.imageListViewStyle }
           contentContainerStyle={{ alignItems: 'stretch' }}
           />
+        <LoadIcon />
       </View>
     )
   }
