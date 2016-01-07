@@ -42,10 +42,6 @@ const ImageListView = React.createClass({
 
   _onScrollBottom(){
     this.props.onScrollBottom()
-    this.setState({
-      ...this.state,
-      loadState:'loading'
-    })
   },
 
   _handleScroll(e){
@@ -58,7 +54,6 @@ const ImageListView = React.createClass({
     return {
       scrollEndDis: 0,
       endReachedThreshold:-100,
-      loadState:'loadBefore'
     };
   },
 
@@ -67,17 +62,18 @@ const ImageListView = React.createClass({
     this._hideStatusBar()
   },
   render() {
-    const {homePhotoList} = this.props
+    const {homePhotoList,homePhotoListState} = this.props
     return (
       <View style={{flex:1}}>
-        <LoadIcon loadState={this.state.loadState}  scrollEndDis={this.state.scrollEndDis} endReachedThreshold={this.state.endReachedThreshold} />
+        <LoadIcon loadState={homePhotoListState}  scrollEndDis={this.state.scrollEndDis} endReachedThreshold={this.state.endReachedThreshold} />
         <ListView
+          scrollEventThrottle={150}
           onScroll={this._handleScroll}
           onEndReachedThreshold={this.state.endReachedThreshold}
           onEndReached={this._onScrollBottom}
           dataSource={this.ds.cloneWithRows(homePhotoList)}
           renderRow={this._renderRow}
-          style={ [styles.imageListViewStyle,this.state.loadState==='loading'?styles.loading:{}] }
+          style={ [styles.imageListViewStyle,homePhotoListState==='loading'?styles.loading:{}] }
           contentContainerStyle={{ alignItems: 'stretch' }}
           />
       </View>

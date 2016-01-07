@@ -4,6 +4,7 @@ import Api from '../api'
 export const GET_PHOTOS = 'GET_PHOTOS'
 export const GET_PHOTO_BY_ID = 'GET_PHOTO_BY_ID'
 export const GET_USER_INFO_BY_USERNAME = 'GET_USERINFO_BY_USERNAME'
+export const GET_PHOTOS_LOADING = 'GET_PHOTOS_LOADING'
 
 
 /**
@@ -11,9 +12,15 @@ export const GET_USER_INFO_BY_USERNAME = 'GET_USERINFO_BY_USERNAME'
  */
 function getPhotosAsync(page, per_page) {
   return async function(dispatch) {
+    dispatch(getPhotosLoading())
     let data = await Api.getPhotos(page, per_page)
     dispatch(getPhotos(data))
   }
+}
+function getPhotosLoading(){
+    return {
+      type:GET_PHOTOS_LOADING,
+    }
 }
 
 function getPhotos(data) {

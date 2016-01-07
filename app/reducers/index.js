@@ -1,10 +1,11 @@
 'use strict'
 import {
-  GET_PHOTOS, GET_PHOTO_BY_ID
+  GET_PHOTOS, GET_PHOTO_BY_ID,GET_PHOTOS_LOADING
 }
 from '../actions'
 
 const initialState = {
+  homePhotoListState:'loadBefore',
   homePageParams:{
     page:1,
     perPage:10
@@ -28,11 +29,17 @@ function reducer(state = initialState, action) {
     case GET_PHOTOS:
       return {
         ...state,
+        homePhotoListState:'loadBefore',
         homePageParams:{
           ...state.homePageParams,
           page:state.homePageParams.page+1
         },
         homePhotoList: state.homePhotoList.concat(action.data)
+      }
+    case GET_PHOTOS_LOADING:
+      return {
+        ...state,
+        homePhotoListState:'loading',
       }
     case GET_PHOTO_BY_ID:
       return {

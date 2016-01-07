@@ -65,14 +65,14 @@ const MainView = React.createClass({
     })
   },
   _renderScene(route,navigator){
-    const {actions,homePhotoList,focusPhoto} = this.props
+    const {actions,homePhotoList,focusPhoto,homePhotoListState} = this.props
     this.route = route
     this.navigator = navigator
     switch (route.name) {
       case 'unsplash':
       return  <ImageDetailView focusPhoto={focusPhoto} />
       default:
-      return <ImageListView onScrollBottom={this._onScrollBottom} homePhotoList={homePhotoList} pressImage={this._pressImage} />
+      return <ImageListView homePhotoListState={homePhotoListState} onScrollBottom={this._onScrollBottom} homePhotoList={homePhotoList} pressImage={this._pressImage} />
     }
 
     // dev
@@ -163,7 +163,8 @@ function mapStateToProps(state) {
   return {
     homePhotoList:state.homePhotoList,
     focusPhoto:state.focusPhoto,
-    homePageParams:state.homePageParams
+    homePageParams:state.homePageParams,
+    homePhotoListState:state.homePhotoListState
   }
 }
 

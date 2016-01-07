@@ -14,12 +14,13 @@ const { View, Animated, ScrollView } = React
  */
 
 const LoadIcon = React.createClass({
-  mixins: [TimerMixin],
 
   /**
    * 载入前执行
    */
   _handleLoadBefore(){
+    clearInterval(this.inter)
+
     const dis =  this.props.scrollEndDis
     if ( dis > 0 ){
       const endReachedDis = -this.props.endReachedThreshold
@@ -27,7 +28,14 @@ const LoadIcon = React.createClass({
       for(let i in this.state.anim){
         Animated.timing(this.state.anim[i], {
           toValue: ratio,
-          duration:0
+          duration:300
+        }).start()
+      }
+    }else{
+      for(let i in this.state.anim){
+        Animated.timing(this.state.anim[i], {
+          toValue: 0,
+          duration:1000
         }).start()
       }
     }
@@ -37,7 +45,7 @@ const LoadIcon = React.createClass({
    * 载入中执行
    */
   _handleLoading(){
-    this.setInterval(()=>{
+    this.inter = setInterval(()=>{
       this.setState({
         anim:{
           opacity:new Animated.Value(1),
@@ -45,13 +53,16 @@ const LoadIcon = React.createClass({
           rotate:new Animated.Value(1)
         }
       })
-      Animated.timing(this.state.anim.rotate, {
+      Animated.spring(this.state.anim.rotate, {
         toValue: 0,
         duration:1000,
       }).start()
     },1000)
   },
 
+  _handleLoadSuccess(){
+    clearInterval(this.inter)
+  },
   getInitialState() {
     return {
       anim:{
@@ -69,6 +80,10 @@ const LoadIcon = React.createClass({
       }
       if (this.props.loadState!== nextProps.loadState&& loadState === 'loading'){
         this._handleLoading()
+      }
+
+      if (this.props.loadState!== nextProps.loadState && loadState === 'loadSuccess'){
+        this._handleLoadSuccess()
       }
    },
 
