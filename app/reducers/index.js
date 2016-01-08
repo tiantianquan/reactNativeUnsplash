@@ -17,7 +17,8 @@ const initialState = {
   }],
   focusPhoto: {
     urls: {
-      small: ''
+      small: '',
+      regular:undefined
     },
     exif: {},
     user:{profile_image: {}}

@@ -10,10 +10,14 @@ const {
   View,
   StyleSheet,
   StatusBarIOS,
-  Image
+  Image,
+  ActionSheetIOS,
+  CameraRoll
 } = React
 
 const ImageDetailView = React.createClass({
+
+
   componentWillMount() {
     /**
     * 设置状态栏颜色
@@ -31,6 +35,41 @@ const ImageDetailView = React.createClass({
       modalVisible:true
     })
   },
+  _showShareSheet(){
+    ActionSheetIOS.showShareActionSheetWithOptions({
+      url: 'https://code.facebook.com',
+      message: 'message to go with the shared url',
+      subject: 'a subject to go in the email heading',
+      // excludedActivityTypes: [
+      //   'com.apple.UIKit.activity.PostToTwitter'
+      // ]
+    },
+    (error) => {
+      console.error(error);
+    },
+    (success, method) => {
+      var text;
+      if (success) {
+        text = `Shared via ${method}`;
+      } else {
+        text = 'You didn\'t share';
+      }
+    })
+  },
+
+  _showSaveSheet(){
+
+  },
+
+  _saveImage(focusPhoto){
+    CameraRoll.saveImageWithTag(focusPhoto.urls.regular, function(data) {
+    console.log(data);
+  }, function(err) {
+    console.log(err);
+  });
+
+  },
+
   render() {
     const {focusPhoto} = this.props
     let avatarImageUrl = focusPhoto.user.profile_image.large
@@ -51,7 +90,8 @@ const ImageDetailView = React.createClass({
               <View style={styles.imageContainer}>
                 <ImageRowItem
                   pressImage={this._handlePressImage}
-                  imageInfo={focusPhoto} />
+                  imageInfo={focusPhoto}
+                   />
               </View>
 
               <View style={styles.bottomContainer}>
@@ -67,7 +107,12 @@ const ImageDetailView = React.createClass({
                     color="#FF6868"/>
                   <BottomButton
                     iconName="fontawesome|share"
-                    color="#ccc"/>
+                    color="#ccc"
+                    onPress={this._showShareSheet}/>
+                  <BottomButton
+                    iconName="fontawesome|download"
+                    color="#ccc"
+                    onPress={()=>{this._saveImage(focusPhoto)}}/>
                 </View>
               </View>
 
@@ -108,12 +153,12 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     justifyContent:'center',
     shadowColor: 'white',
-   shadowRadius: 10,
-   shadowOpacity: 0.5,
-   shadowOffset: {
-     h: 0,
-     w: 0
-   },
+    shadowRadius: 10,
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      h: 0,
+      w: 0
+    },
   },
   bottomButtonContainer:{
     flexDirection:'row',

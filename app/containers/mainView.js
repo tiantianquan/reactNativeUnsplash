@@ -57,12 +57,12 @@ var NavigationBarRouteMapper = {
 
 const MainView = React.createClass({
   _pressImage(imageInfo){
-    var nextIndex = this.route.index + 1;
-    this.props.actions.getPhotoByIdAsync(imageInfo.id)
+    var nextIndex = this.route.index + 1
     this.navigator.push({
       name:'unsplash',
       index: nextIndex,
     })
+    this.props.actions.getPhotoByIdAsync(imageInfo.id)
   },
   _renderScene(route,navigator){
     const {actions,homePhotoList,focusPhoto,homePhotoListState} = this.props

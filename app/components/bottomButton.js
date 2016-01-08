@@ -10,9 +10,9 @@ const {
 
 const BottomButton = React.createClass({
   render () {
-    const { iconName, color }=this.props
+    const { iconName, color,onPress}=this.props
     return (
-      <TouchableHighlight style={styles.container}>
+      <TouchableHighlight onPress={onPress} style={styles.container}>
           <Icon
             name={iconName}
             size={20}

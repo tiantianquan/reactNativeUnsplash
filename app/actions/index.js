@@ -36,6 +36,7 @@ function getPhotos(data) {
 function getPhotoByIdAsync(id) {
   return async function(dispatch) {
     let data = await Api.getPhotoById(id)
+    console.log('action:',data)
     dispatch(getPhotoById(data))
   }
 }
