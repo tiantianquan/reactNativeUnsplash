@@ -6,8 +6,8 @@ import { Icon } from 'react-native-icons'
 import cssVar from 'cssVar'
 
 
-import ImageListView from '../components/imageListView'
-import ImageDetailView from '../components/imageDetailView'
+import ImageListView from '../views/imageListView'
+import ImageDetailView from '../views/imageDetailView'
 import actions from '../actions'
 
 const {

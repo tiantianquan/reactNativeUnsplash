@@ -1,10 +1,10 @@
 'use strict'
 import React from 'react-native'
-import {BlurView,VibrancyView} from 'react-native-blur'
-import ImageRowItem from './imageRowItem'
-import BottomButton from './bottomButton'
-import ImageInfoModal from './imageInfoModal'
-import UserHead from './userHead'
+import {BlurView} from 'react-native-blur'
+import ImageRowItem from '../components/imageRowItem'
+import BottomButton from '../components/bottomButton'
+import ImageInfoModal from '../components/imageInfoModal'
+import UserHead from '../components/userHead'
 
 const {
   View,

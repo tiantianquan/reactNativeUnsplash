@@ -1,14 +1,13 @@
 'use strict'
 import React from 'react-native'
-import ImageRowItem from './imageRowItem'
-import LoadIcon from './loadIcon'
+import ImageRowItem from '../components/imageRowItem'
+import LoadIcon from '../components/loadIconSpinkit'
+
 
 const {
   ListView,
   View,
-  TouchableHighlight,
   StyleSheet,
-  Text,
   StatusBarIOS
 } = React
 
@@ -45,8 +44,8 @@ const ImageListView = React.createClass({
   },
 
   _handleScroll(e){
-    let dis  =e.nativeEvent.contentOffset.y+e.nativeEvent.layoutMeasurement.height-e.nativeEvent.contentSize.height
-    if(dis > 0){
+    let dis  = e.nativeEvent.contentOffset.y+e.nativeEvent.layoutMeasurement.height-e.nativeEvent.contentSize.height
+    if (dis > 0){
       this.setState({
         ...this.state,
         scrollEndDis:dis,
@@ -64,10 +63,9 @@ const ImageListView = React.createClass({
   getInitialState: function() {
     return {
       scrollEndDis: 0,
-      endReachedThreshold:-100,
-      scrollEventThrottle:1000
-
-    };
+      endReachedThreshold:-30,
+      scrollEventThrottle:100
+    }
   },
 
   componentWillMount() {
@@ -78,7 +76,10 @@ const ImageListView = React.createClass({
     const {homePhotoList,homePhotoListState} = this.props
     return (
       <View style={{flex:1}}>
-        <LoadIcon loadState={homePhotoListState}  scrollEndDis={this.state.scrollEndDis} endReachedThreshold={this.state.endReachedThreshold} />
+        <LoadIcon
+          loadState={homePhotoListState}
+          scrollEndDis={this.state.scrollEndDis}
+          endReachedThreshold={this.state.endReachedThreshold} />
         <ListView
           scrollEventThrottle={this.state.scrollEventThrottle}
           onScroll={this._handleScroll}
@@ -86,7 +87,7 @@ const ImageListView = React.createClass({
           onEndReached={this._onScrollBottom}
           dataSource={this.ds.cloneWithRows(homePhotoList)}
           renderRow={this._renderRow}
-          style={ [styles.imageListViewStyle,homePhotoListState==='loading'?styles.loading:{}] }
+          style={ [styles.imageListViewStyle,homePhotoListState==='loading'?{marginBottom:-this.state.endReachedThreshold}:{}] }
           contentContainerStyle={{ alignItems: 'stretch' }}
           />
       </View>
@@ -98,9 +99,6 @@ let styles = StyleSheet.create({
   imageListViewStyle:{
     flex:1,
   },
-  loading:{
-    marginBottom:50
-  }
 })
 
 export default ImageListView
