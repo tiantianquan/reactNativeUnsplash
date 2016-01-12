@@ -2,6 +2,8 @@
 import React from 'react-native'
 import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
+import ListViewSearchBar from '../components/listViewSearchBar'
+import SearchBar from '../components/searchBar'
 
 
 const {
@@ -58,13 +60,29 @@ const ImageListView = React.createClass({
         scrollEventThrottle:1000
       })
     }
+
+    // if(e.nativeEvent.contentOffset.y<-10){
+    //   this.setState({
+    //     ...this.state,
+    //     showSearchBar:true
+    //   })
+    // }
   },
+
+  _renderSearchBar(){
+    return (
+      <View>
+        <SearchBar />
+      </View>
+    )
+  },
+
 
   getInitialState: function() {
     return {
       scrollEndDis: 0,
       endReachedThreshold:-30,
-      scrollEventThrottle:100
+      scrollEventThrottle:100,
     }
   },
 
@@ -77,17 +95,24 @@ const ImageListView = React.createClass({
     return (
       <View style={{flex:1}}>
         <LoadIcon
+          style={styles.loadIcon}
           loadState={homePhotoListState}
           scrollEndDis={this.state.scrollEndDis}
-          endReachedThreshold={this.state.endReachedThreshold} />
+          endReachedThreshold={this.state.endReachedThreshold}
+          backgroundColor="#222222"
+          iconColor="#e2e2e2"
+          />
         <ListView
+          renderHeader = {this._renderSearchBar}
           scrollEventThrottle={this.state.scrollEventThrottle}
           onScroll={this._handleScroll}
           onEndReachedThreshold={this.state.endReachedThreshold}
           onEndReached={this._onScrollBottom}
           dataSource={this.ds.cloneWithRows(homePhotoList)}
           renderRow={this._renderRow}
-          style={ [styles.imageListViewStyle,homePhotoListState==='loading'?{marginBottom:-this.state.endReachedThreshold}:{}] }
+          style={[styles.imageListViewStyle,
+            homePhotoListState==='loading'?{marginBottom:-this.state.endReachedThreshold}:{},
+          ] }
           contentContainerStyle={{ alignItems: 'stretch' }}
           />
       </View>

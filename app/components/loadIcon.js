@@ -113,7 +113,7 @@ const LoadIcon = React.createClass({
 
   render() {
     return (
-      <View style= {styles.container}>
+      <View style= {[styles.container,this.props.style]}>
         <Animated.View style={ this.props.loadState === 'loading'?{
             opacity:this.state.anim.opacity.interpolate({
               inputRange: [0, 1],

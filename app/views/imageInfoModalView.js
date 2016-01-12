@@ -1,8 +1,8 @@
 'use strict'
 import React from 'react-native'
 import {BlurView,VibrancyView} from 'react-native-blur'
-import ModalHeadText from './modalHeadText'
-import ModalSubText from './modalSubText'
+import ModalHeadText from '../components/modalHeadText'
+import ModalSubText from '../components/modalSubText'
 
 const{
   Modal,

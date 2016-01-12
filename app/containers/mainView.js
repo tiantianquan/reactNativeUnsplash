@@ -70,13 +70,17 @@ const MainView = React.createClass({
     this.navigator = navigator
     switch (route.name) {
       case 'unsplash':
+      // this.setState({
+      //   showNav:true
+      // })
       return  <ImageDetailView focusPhoto={focusPhoto} />
       default:
+      // this.setState({
+      //   showNav:false
+      // })
       return <ImageListView homePhotoListState={homePhotoListState} onScrollBottom={this._onScrollBottom} homePhotoList={homePhotoList} pressImage={this._pressImage} />
     }
 
-    // dev
-    // return <ImageDetailView focusPhoto={focusPhoto}/>
   },
   _onScrollBottom(){
     this.props.actions.getPhotosAsync(this.props.homePageParams.page,this.props.homePageParams.perPage)
@@ -84,8 +88,6 @@ const MainView = React.createClass({
 
   componentWillMount(){
     this.props.actions.getPhotosAsync(1,10)
-    //dev
-    // this.props.actions.getPhotoByIdAsync('YD1uvthZwg4')
   },
 
   render() {

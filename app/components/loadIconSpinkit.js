@@ -63,7 +63,11 @@ const LoadIcon = React.createClass({
     //滚动超过底部数值
     scrollEndDis:React.PropTypes.number,
     //触发loading动画数值
-    endReachedThreshold:React.PropTypes.number
+    endReachedThreshold:React.PropTypes.number,
+    //图标颜色
+    iconColor:React.PropTypes.string,
+    //背景色
+    backgroundColor:React.PropTypes.string
   },
 
   getInitialState() {
@@ -86,14 +90,14 @@ const LoadIcon = React.createClass({
 
   render() {
     return (
-      <View style= {styles.container}>
+      <View style= {[styles.container,{backgroundColor:this.props.backgroundColor}]}>
         <View style={{
             opacity:this.state.opacity,
             transform: [
               {scale: this.state.scale},
             ]
           }}>
-          <Spinner type="Wave" size={30} color="#ffffff" />
+          <Spinner type="Wave" size={30} color={this.props.iconColor} />
         </View>
       </View>
     )

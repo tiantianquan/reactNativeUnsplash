@@ -3,7 +3,7 @@ import React from 'react-native'
 import {BlurView} from 'react-native-blur'
 import ImageRowItem from '../components/imageRowItem'
 import BottomButton from '../components/bottomButton'
-import ImageInfoModal from '../components/imageInfoModal'
+import ImageInfoModal from './imageInfoModalView'
 import UserHead from '../components/userHead'
 
 const {
@@ -103,9 +103,6 @@ const ImageDetailView = React.createClass({
 
                 <View style={styles.bottomButtonContainer}>
                   <BottomButton
-                    iconName="fontawesome|heart-o"
-                    color="#FF6868"/>
-                  <BottomButton
                     iconName="fontawesome|share"
                     color="#ccc"
                     onPress={this._showShareSheet}/>
@@ -166,3 +163,8 @@ const styles = StyleSheet.create({
 })
 
 export default ImageDetailView
+
+
+// <BottomButton
+//   iconName="fontawesome|heart-o"
+//   color="#FF6868"/>
