@@ -27,13 +27,13 @@ const ImageRowItem = React.createClass({
     }
   },
   render () {
-    const {pressImage,imageInfo,style} = this.props
+    const {pressImage,imageInfo,style,sourceUrl} = this.props
 
     return (
       <TouchableHighlight  onPress={()=>pressImage(imageInfo)}>
         <View style={style}>
           <Image
-            source={{uri:this.state.sourceUrl}}
+            source={{uri:sourceUrl}}
             style={{
               resizeMode:'cover',
               height: 375 / imageInfo.width * imageInfo.height,

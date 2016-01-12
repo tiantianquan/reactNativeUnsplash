@@ -27,9 +27,12 @@ const ImageListView = React.createClass({
   _renderRow(rowData){
     const {pressImage} = this.props
     return (
+      /*
+        直接传入URL可以更快的显示图片
+       */
       <ImageRowItem
         imageInfo={rowData}
-        pressImage={pressImage} />
+        pressImage={pressImage} sourceUrl={rowData.urls.regular} />
     )
   },
 

@@ -91,6 +91,7 @@ const ImageDetailView = React.createClass({
                 <ImageRowItem
                   pressImage={this._handlePressImage}
                   imageInfo={focusPhoto}
+                  sourceUrl={focusPhoto.urls.regular}
                    />
               </View>
 
