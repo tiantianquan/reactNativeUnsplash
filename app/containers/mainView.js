@@ -17,7 +17,8 @@ const {
   Text,
   TouchableOpacity,
   PixelRatio,
-  View
+  View,
+  StatusBarIOS
 } = React
 
 var NavigationBarRouteMapper = {
@@ -57,33 +58,67 @@ var NavigationBarRouteMapper = {
 
 const MainView = React.createClass({
   _pressImage(imageInfo){
-    var nextIndex = this.route.index + 1
-    this.navigator.push({
-      name:'unsplash',
-      index: nextIndex,
-    })
     this.props.actions.getPhotoByIdAsync(imageInfo.id)
   },
+
   _renderScene(route,navigator){
-    const {actions,homePhotoList,focusPhoto,homePhotoListState} = this.props
     this.route = route
     this.navigator = navigator
+
+    /**
+     * 导航转换完成之后执行的事件
+     */
+    navigator.navigationContext.addListener('didfocus', (event) => {
+      if(event.data.route.name == 'unsplash'){
+        this.props.actions.showStatusBar()
+      }
+      else{
+        this.props.actions.hideStatusBar()
+      }
+    })
+
+
     switch (route.name) {
       case 'unsplash':
-      // this.setState({
-      //   showNav:true
-      // })
-      return  <ImageDetailView focusPhoto={focusPhoto} />
+        return this._navToDetailView()
       default:
-      // this.setState({
-      //   showNav:false
-      // })
-      return <ImageListView homePhotoListState={homePhotoListState} onScrollBottom={this._onScrollBottom} homePhotoList={homePhotoList} pressImage={this._pressImage} />
+        return this._navToHomeListView()
     }
 
   },
+
+  _navToDetailView(){
+    return  (<ImageDetailView  focusPhoto={this.props.focusPhoto} />  )
+  },
+
+  _navToHomeListView(){
+    return (
+      <ImageListView
+        homePhotoListState={this.props.homePhotoListState}
+        onScrollBottom={this._onScrollBottom}
+        homePhotoList={this.props.homePhotoList}
+        pressImage={this._pressImage}
+        />
+    )
+  },
+
   _onScrollBottom(){
     this.props.actions.getPhotosAsync(this.props.homePageParams.page,this.props.homePageParams.perPage)
+  },
+
+  _handleStatusBar(statusBarShow){
+    StatusBarIOS.setHidden(!statusBarShow,'fade')
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.detailPhotoState !== nextProps.detailPhotoState
+      && nextProps.detailPhotoState!='loading'){
+        var nextIndex = this.route.index + 1
+        this.navigator.push({
+          name:'unsplash',
+          index: nextIndex,
+        })
+      }
   },
 
   componentWillMount(){
@@ -91,9 +126,10 @@ const MainView = React.createClass({
   },
 
   render() {
+    const {statusBarShow} = this.props
+    this._handleStatusBar(statusBarShow)
     return (
       <Navigator
-        ref="nav"
         initialRoute={{name: '', index: 0}}
         navigationBar={
           <Navigator.NavigationBar
@@ -166,7 +202,9 @@ function mapStateToProps(state) {
     homePhotoList:state.homePhotoList,
     focusPhoto:state.focusPhoto,
     homePageParams:state.homePageParams,
-    homePhotoListState:state.homePhotoListState
+    homePhotoListState:state.homePhotoListState,
+    detailPhotoState:state.detailPhotoState,
+    statusBarShow:state.statusBarShow,
   }
 }
 

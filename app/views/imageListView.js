@@ -22,14 +22,6 @@ const ImageListView = React.createClass({
   },
 
   /**
-  * TODO:隐藏状态栏与导航栏
-  */
-  _hideStatusBar(){
-    StatusBarIOS.setHidden(true,'fade')
-  },
-
-
-  /**
   * 渲染列表项
   */
   _renderRow(rowData){
@@ -77,6 +69,10 @@ const ImageListView = React.createClass({
     )
   },
 
+  _initScrollPosition(){
+
+  },
+
 
   getInitialState: function() {
     return {
@@ -87,8 +83,8 @@ const ImageListView = React.createClass({
   },
 
   componentWillMount() {
+    this._initScrollPosition()
     this._bindDatatSource()
-    this._hideStatusBar()
   },
   render() {
     const {homePhotoList,homePhotoListState} = this.props
@@ -103,6 +99,11 @@ const ImageListView = React.createClass({
           iconColor="#e2e2e2"
           />
         <ListView
+          /*
+            设置初始y轴偏移,将搜索栏隐藏
+           */
+          contentOffset={{y:50}}
+          showsVerticalScrollIndicator={true}
           renderHeader = {this._renderSearchBar}
           scrollEventThrottle={this.state.scrollEventThrottle}
           onScroll={this._handleScroll}
