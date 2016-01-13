@@ -32,7 +32,7 @@ var NavigationBarRouteMapper = {
         onPress={() => navigator.pop()}
         style={styles.navBarLeftButton}>
         <Icon
-          name="fontawesome|angle-left"
+          name="ion|ios-arrow-left"
           size={30}
           color="#ccc"
           style={styles.leftIcon} />

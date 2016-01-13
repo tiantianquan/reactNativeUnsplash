@@ -3,7 +3,7 @@ import React from 'react-native'
 import {Icon} from  'react-native-icons'
 
 const {
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
   View
 } = React
@@ -12,13 +12,13 @@ const BottomButton = React.createClass({
   render () {
     const { iconName, color,onPress}=this.props
     return (
-      <TouchableHighlight onPress={onPress} style={styles.container}>
+      <TouchableOpacity onPress={onPress} style={styles.container}>
           <Icon
             name={iconName}
-            size={20}
+            size={25}
             color={color}
             style={styles.icon} />
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 })
@@ -29,12 +29,11 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     height:44,
-    backgroundColor:'rgba(85,85,85,0.5)',
-    opacity:0.8
+    backgroundColor:'rgba(85,85,85,0.4)',
   },
   icon:{
-    height:20,
-    width:20
+    height:25,
+    width:25
   }
 })
 

@@ -5,6 +5,7 @@ import ImageRowItem from '../components/imageRowItem'
 import BottomButton from '../components/bottomButton'
 import ImageInfoModal from './imageInfoModalView'
 import UserHead from '../components/userHead'
+import SaveButton from '../components/saveButton'
 
 const {
   View,
@@ -104,13 +105,11 @@ const ImageDetailView = React.createClass({
 
                 <View style={styles.bottomButtonContainer}>
                   <BottomButton
-                    iconName="fontawesome|share"
+                    iconName="ion|ios-upload-outline"
                     color="#ccc"
                     onPress={this._showShareSheet}/>
-                  <BottomButton
-                    iconName="fontawesome|download"
-                    color="#ccc"
-                    onPress={()=>{this._saveImage(focusPhoto)}}/>
+                  <SaveButton imageInfo={focusPhoto}></SaveButton>
+
                 </View>
               </View>
 
@@ -123,6 +122,10 @@ const ImageDetailView = React.createClass({
     )
   }
 })
+// <BottomButton
+//                       iconName="fontawesome|download"
+//                       color="#ccc"
+//                       onPress={()=>{this._saveImage(focusPhoto)}}/>
 
 const styles = StyleSheet.create({
   container:{

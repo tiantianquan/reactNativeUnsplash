@@ -107,7 +107,7 @@ const ImageListView = React.createClass({
           /*
             设置初始y轴偏移,将搜索栏隐藏
            */
-          contentOffset={{y:50}}
+          contentOffset={{y:70}}
           showsVerticalScrollIndicator={true}
           renderHeader = {this._renderSearchBar}
           scrollEventThrottle={this.state.scrollEventThrottle}
