@@ -7,11 +7,9 @@
 import React from 'react-native'
 import Spinner from 'react-native-spinkit'
 
-
 const { View } = React
 
 const LoadIcon = React.createClass({
-
 
   /**
   * 载入前执行
