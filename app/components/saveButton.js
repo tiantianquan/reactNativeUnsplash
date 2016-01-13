@@ -1,12 +1,14 @@
 'use strict'
 import React, { PropTypes } from 'react-native'
+import RNFS from 'react-native-fs'
 import BottomButton from './bottomButton'
 
 const {
   View,
   StyleSheet,
   ActionSheetIOS,
-  CameraRoll
+  CameraRoll,
+  Image
 } = React
 
 const SaveButton = React.createClass({
@@ -23,8 +25,56 @@ const SaveButton = React.createClass({
     })
   },
 
+  _handleImageOnProcess(){
+      alert('_handleImageOnProcess')
+  },
+
   _saveItem(url){
-    CameraRoll.saveImageWithTag(url, function(data) { }, function(err) { })
+    // RNFS.readDir(RNFS.MainBundlePath)
+    // .then((result) => {
+    //   console.log('GOT RESULT', result);
+    //
+    //   // stat the first file
+    //   return Promise.all([RNFS.stat(result[0].path), result[0].path]);
+    // })
+    // .then((statResult) => {
+    //   if (statResult[0].isFile()) {
+    //     // if we have a file, read it
+    //     return RNFS.readFile(statResult[1], 'utf8');
+    //   }
+    //
+    //   return 'no file';
+    // })
+    // .then((contents) => {
+    //   // log the file contents
+    //   console.log(contents);
+    // })
+    // .catch((err) => {
+    //   console.log(err.message, err.code);
+    // });
+
+    let downloadImagePath = RNFS.DocumentDirectoryPath+'/a.jpeg'
+
+    RNFS.downloadFile(url,downloadImagePath,
+      ()=>{
+        console.log('begin')
+      },
+      (e)=>{
+        console.log('process',downloadImagePath)
+        if(e.contentLength ===  e.bytesWritten){
+          CameraRoll.saveImageWithTag(downloadImagePath, (data)=>{
+            console.log('data:',data)
+          }, (err) =>{
+              console.log('err',err)
+           })
+        }
+      }
+    ).then((data)=>{
+      console.log(data)
+    }).catch((err)=>{
+      //catch timeout err
+      console.log(err)
+    })
   },
 
   _initActionSheetButtons(imageInfo){
