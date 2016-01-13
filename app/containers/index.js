@@ -5,11 +5,12 @@ import {createStore, applyMiddleware,combineReducers} from 'redux'
 import {Provider} from 'react-redux/native'
 // import promiseMiddleware from 'redux-promise-middleware'
 import thunk from 'redux-thunk'
+import createLogger from 'redux-logger';
 
 import MainView from './mainView'
 import rootReducer from '../reducers'
 //
-let createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
+let createStoreWithMiddleware = applyMiddleware(thunk,createLogger())(createStore)
 // let reducer = combineReducers(rootReducer)
 let store = createStoreWithMiddleware(rootReducer)
 

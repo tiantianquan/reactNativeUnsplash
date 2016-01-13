@@ -66,7 +66,7 @@ const MainView = React.createClass({
     this.navigator = navigator
 
     /**
-     * 导航转换完成之后执行的事件
+     * 导航转换完成之后执行的事件(TODO:多次触发,进行优化)
      */
     navigator.navigationContext.addListener('didfocus', (event) => {
       if(event.data.route.name == 'unsplash'){
@@ -88,31 +88,36 @@ const MainView = React.createClass({
   },
 
   _navToDetailView(){
-    return  (<ImageDetailView  focusPhoto={this.props.focusPhoto} />  )
+    const {detailView:{detailImage:{data}}} = this.props
+    return  (<ImageDetailView focusPhoto={data} />  )
   },
 
   _navToHomeListView(){
+    const {homeView:{imageList}} = this.props
     return (
       <ImageListView
-        homePhotoListState={this.props.homePhotoListState}
+        homePhotoListState={imageList.loadState}
         onScrollBottom={this._onScrollBottom}
-        homePhotoList={this.props.homePhotoList}
+        homePhotoList={imageList.data}
         pressImage={this._pressImage}
         />
     )
   },
 
   _onScrollBottom(){
-    this.props.actions.getPhotosAsync(this.props.homePageParams.page,this.props.homePageParams.perPage)
+    const {homeView:{imageList:{getParams}}}= this.props
+    this.props.actions.getPhotosAsync(getParams.page,getParams.perPage)
   },
 
-  _handleStatusBar(statusBarShow){
-    StatusBarIOS.setHidden(!statusBarShow,'fade')
+  _handleStatusBar(){
+    StatusBarIOS.setHidden(!this.props.otherState.statusBarShow,'fade')
   },
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.detailPhotoState !== nextProps.detailPhotoState
-      && nextProps.detailPhotoState!='loading'){
+    const {detailView:{detailImage:{loadState:detailViewLoadState}}} = this.props
+    const {detailView:{detailImage:{loadState:nextDetailViewLoadState}}} = nextProps
+    if(detailViewLoadState !== nextDetailViewLoadState
+      && nextDetailViewLoadState!='loading'){
         var nextIndex = this.route.index + 1
         this.navigator.push({
           name:'unsplash',
@@ -126,8 +131,7 @@ const MainView = React.createClass({
   },
 
   render() {
-    const {statusBarShow} = this.props
-    this._handleStatusBar(statusBarShow)
+this._handleStatusBar()
     return (
       <Navigator
         initialRoute={{name: '', index: 0}}
@@ -198,14 +202,7 @@ var styles = StyleSheet.create({
 
 //redux配置
 function mapStateToProps(state) {
-  return {
-    homePhotoList:state.homePhotoList,
-    focusPhoto:state.focusPhoto,
-    homePageParams:state.homePageParams,
-    homePhotoListState:state.homePhotoListState,
-    detailPhotoState:state.detailPhotoState,
-    statusBarShow:state.statusBarShow,
-  }
+  return state.toJS()
 }
 
 function mapDispatchToProps(dispatch) {

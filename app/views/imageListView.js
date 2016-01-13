@@ -37,7 +37,9 @@ const ImageListView = React.createClass({
   },
 
   _onScrollBottom(){
-    this.props.onScrollBottom()
+    if(this.props.homePhotoListState !=='loading'){
+      this.props.onScrollBottom()
+    }
   },
 
   _handleScroll(e){
