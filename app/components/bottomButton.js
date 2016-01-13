@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
     alignItems:'center',
-    height:44,
     backgroundColor:'rgba(85,85,85,0.4)',
   },
   icon:{

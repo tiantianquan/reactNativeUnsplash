@@ -4,6 +4,7 @@ import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
 import ListViewSearchBar from '../components/listViewSearchBar'
 import SearchBar from '../components/searchBar'
+import BottomButton from '../components/bottomButton'
 
 
 const {
@@ -68,9 +69,7 @@ const ImageListView = React.createClass({
 
   _renderSearchBar(){
     return (
-      <View>
         <SearchBar />
-      </View>
     )
   },
 
@@ -84,6 +83,7 @@ const ImageListView = React.createClass({
       scrollEndDis: 0,
       endReachedThreshold:-30,
       scrollEventThrottle:100,
+      topBarHeight:100
     }
   },
 
@@ -103,13 +103,15 @@ const ImageListView = React.createClass({
           backgroundColor="#222222"
           iconColor="#e2e2e2"
           />
+
+
         <ListView
           /*
             设置初始y轴偏移,将搜索栏隐藏
            */
-          contentOffset={{y:70}}
+          contentOffset={{y:0}}
           showsVerticalScrollIndicator={true}
-          renderHeader = {this._renderSearchBar}
+          // renderHeader = {this._renderSearchBar}
           scrollEventThrottle={this.state.scrollEventThrottle}
           onScroll={this._handleScroll}
           onEndReachedThreshold={this.state.endReachedThreshold}
@@ -130,6 +132,18 @@ let styles = StyleSheet.create({
   imageListViewStyle:{
     flex:1,
   },
+  topButtonContainer:{
+    flexDirection:'row',
+  }
 })
 
 export default ImageListView
+
+// <View style={[styles.topButtonContainer,{height:this.state.topBarHeight}]}>
+//   <BottomButton
+//     iconName="ion|ios-search"
+//     color="#ccc"/>
+//     <BottomButton
+//       iconName="ion|ios-cloud-download-outline"
+//       color="#ccc"/>
+// </View>

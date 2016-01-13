@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
   },
   bottomButtonContainer:{
     flexDirection:'row',
+    height:44
   }
 })
 
