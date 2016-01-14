@@ -120,28 +120,34 @@ function reducer(state = initialState, action) {
       action.downloadItem.downloadProcessRatio = 0
       return state.update('downloadList', (list) => list.push(action.downloadItem))
     case DOWNLOAD_PROCESS:
-      return state.update('downloadList', (list) => {
-        let data = list.find((item) => item.id === action.downloadItem.id)
-        data.downloadState = 'process'
-        data.downloadProcessRatio = parseFloat(
-          (action.processEvent.bytesWritten / action.processEvent.contentLength).toFixed(2)
-        )
-        return list.map(data=>data)
-      })
+      let timeGap = 1000
+      if(Date.now() - action.downloadItem.lastTime > timeGap) {
+        return state.update('downloadList', (list) => {
+          let data = list.find((item) => item.id === action.downloadItem.id)
+          data.downloadState = 'process'
+          data.downloadProcessRatio = parseFloat(
+            (action.processEvent.bytesWritten / action.processEvent.contentLength).toFixed(
+              2)
+          )
+          return list.map(data => data)
+        })
+      }
+      else{
+        return state
+      }
     case DOWNLOAD_SUCCESS:
       return state.update('downloadList', (list) => {
         let data = list.find((item) => item.id === action.downloadItem.id)
         data.downloadState = 'success'
         data.downloadProcessRatio = 1
-        return list
+        return list.map(data => data)
       })
     case DOWNLOAD_FAIL:
-      alert(action.err)
       return state.update('downloadList', (list) => {
         let data = list.find((item) => item.id === action.downloadItem.id)
         data.downloadState = 'fail'
         data.downloadProcessRatio = 0
-        return list
+        return list.map(data => data)
       })
 
     default:

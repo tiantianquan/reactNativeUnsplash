@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react-native'
-import SideMenu from 'react-native-side-menu'
+import SideMenu from '../components/react-native-side-menu'
 import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
 import SearchBar from '../components/searchBar'
@@ -54,13 +54,13 @@ const ImageListView = React.createClass({
       this.setState({
         ...this.state,
         scrollEndDis:dis,
-        scrollEventThrottle:0
+        scrollEventThrottle:0,
       })
-    }else{
+    }else if(this.state.scrollEventThrottle !== 1000){
       this.setState({
         ...this.state,
         scrollEndDis:dis,
-        scrollEventThrottle:1000
+        scrollEventThrottle:1000,
       })
     }
   },
@@ -80,8 +80,8 @@ const ImageListView = React.createClass({
     return {
       scrollEndDis: 0,
       endReachedThreshold:-30,
-      scrollEventThrottle:100,
-      topBarHeight:100
+      scrollEventThrottle:1000,
+      topBarHeight:100,
     }
   },
 
@@ -93,7 +93,6 @@ const ImageListView = React.createClass({
     const {homePhotoList,homePhotoListState,downloadList} = this.props
     return (
       <SideMenu
-        isOpen={false}
         menu={<DownloadView
           style={{
           width:2 / 3 * window.width

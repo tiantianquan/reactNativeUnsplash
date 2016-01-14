@@ -27,7 +27,6 @@ _renderInner(){
     default:
       break
   }
-  console.log(ratio)
 
   return (
     <View

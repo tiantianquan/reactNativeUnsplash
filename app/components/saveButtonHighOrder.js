@@ -17,6 +17,7 @@ class DownloadItem {
 
     this.downloadState = 'start'
     this.downloadProcessRatio = 0
+    this.lastTime = Date.now()
   }
   getSavePath(id){
     return `${RNFS.DocumentDirectoryPath}/${id}.jpeg`

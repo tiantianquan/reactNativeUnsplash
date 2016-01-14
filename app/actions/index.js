@@ -121,10 +121,15 @@ function downloadPreStart(downloadItem) {
     try {
       //开始
       dispatch(downloadStart(downloadItem))
+      let timeGap =1000
+      let lastTime = Date.now()
       let data = await Api.downloadImage(downloadItem, () => {
         }, (processEvent) => {
           //TODO:进度 可以在此处加入判断,在进入下载界面在触发process事件,其他时间不触发
-          dispatch(downloadProcess(downloadItem,processEvent))
+          // if(Date.now()-lastTime>timeGap){
+          //   lastTime = Date.now()
+            dispatch(downloadProcess(downloadItem,processEvent))
+          // }
         })
         //成功
       dispatch(downloadPreSuccess(downloadItem,data))
