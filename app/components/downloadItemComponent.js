@@ -27,7 +27,7 @@ const DownloadItemComponent  = React.createClass({
           />
         <DownloadProcessBar
           backgroundColor="rgba(216,216,216,0.1)"
-          failColor="rgb(52, 219, 48)"
+          failColor="rgba(52, 219, 48,1)"
           successColor="rgba(88,150,229,0.4)"
           processColor = "rgba(229,88,88,0.4)"
           processRatio = {downloadItem.downloadProcessRatio}

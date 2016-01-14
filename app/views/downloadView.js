@@ -27,7 +27,7 @@ const DownloadView = React.createClass({
   _renderRow(rowItem){
     return (
       <View style={styles.listItem}>
-       <DownloadItemComponent downloadItem={rowItem}  />
+        <DownloadItemComponent downloadItem={rowItem}  />
        </View>
      )
   },
@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     marginBottom:5,
   },
   listItem:{
-    height:100
+    height:100,
+    marginBottom:2
   }
 })
 

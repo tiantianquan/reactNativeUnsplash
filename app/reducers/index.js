@@ -122,6 +122,7 @@ function reducer(state = initialState, action) {
     case DOWNLOAD_PROCESS:
       let timeGap = 1000
       if(Date.now() - action.downloadItem.lastTime > timeGap) {
+        // alert(Date.now() - action.downloadItem.lastTime)
         return state.update('downloadList', (list) => {
           let data = list.find((item) => item.id === action.downloadItem.id)
           data.downloadState = 'process'
@@ -129,6 +130,7 @@ function reducer(state = initialState, action) {
             (action.processEvent.bytesWritten / action.processEvent.contentLength).toFixed(
               2)
           )
+          data.lastTime = Date.now()
           return list.map(data => data)
         })
       }

@@ -2,46 +2,72 @@
 import React, { PropTypes } from 'react-native'
 
 const {
+  Animated,
   View,
   Text,
-   StyleSheet
+   StyleSheet,
+   Dimensions
 } = React
+
+const window = Dimensions.get('window')
+
+let processBarWidth = window.width * 2 / 3-100
 
 const DownloadProcessBar = React.createClass({
 _renderInner(){
+  this.widthAnim = this.widthAnim || new Animated.Value(0);
+
   const {failColor,successColor,processColor,processRatio,processState} = this.props
   let backgroundColor,ratio
   switch (processState) {
     case 'success':
       backgroundColor=successColor
-      ratio=1
+      ratio = 1
       break
     case 'fail':
       backgroundColor=failColor
-      ratio=0
+      ratio = 1
       break
     case 'process':
       backgroundColor=processColor
-      ratio =processRatio
+      ratio = processRatio
       break
     default:
+      backgroundColor=processColor
+      ratio = 0
       break
   }
 
+  Animated.timing(this.widthAnim, {
+              toValue: ratio,   // Returns to the start
+              duration:1000
+              // velocity: 3,  // Velocity makes it move
+              // tension: -10, // Slow
+              // friction: 1,  // Oscillate a lot
+            }).start();
+
+
   return (
-    <View
+    <Animated.View
       style={[
         styles.inner,
         {
-          backgroundColor:backgroundColor,
+          // backgroundColor:backgroundColor,
+          backgroundColor:this.widthAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [processColor, backgroundColor],
+                }),
           // transform:[{
-          //   scaleX:ratio
+          //   translateX:200
           // }]
-          width:ratio*200
+          width:this.widthAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, processBarWidth],
+                })
         }
       ]} >
 
-    </View>
+    </Animated.View>
   )
 
 },
@@ -76,6 +102,7 @@ const styles = StyleSheet.create({
   },
   inner:{
     // flex:1,
+    // left:-200
   }
 })
 

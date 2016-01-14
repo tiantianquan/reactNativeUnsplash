@@ -10,7 +10,9 @@ import createLogger from 'redux-logger';
 import MainView from './mainView'
 import rootReducer from '../reducers'
 //
-let createStoreWithMiddleware = applyMiddleware(thunk,createLogger())(createStore)
+let createStoreWithMiddleware = applyMiddleware(thunk
+  // ,createLogger()
+)(createStore)
 // let reducer = combineReducers(rootReducer)
 let store = createStoreWithMiddleware(rootReducer)
 
