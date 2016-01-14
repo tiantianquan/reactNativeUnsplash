@@ -119,11 +119,11 @@ function showNavBar() {
 function downloadPreStart(downloadItem) {
   return async function(dispatch) {
     try {
+      //开始
+      dispatch(downloadStart(downloadItem))
       let data = await Api.downloadImage(downloadItem, () => {
-          //开始
-          dispatch(downloadStart(downloadItem))
         }, (processEvent) => {
-          //进度
+          //TODO:进度 可以在此处加入判断,在进入下载界面在触发process事件,其他时间不触发
           dispatch(downloadProcess(downloadItem,processEvent))
         })
         //成功
@@ -151,12 +151,12 @@ function downloadSuccess(downloadItem,data) {
   }
 }
 
-function downloadPreSuccess(downloadItem,savePath) {
+function downloadPreSuccess(downloadItem,resData) {
   return async function(dispatch) {
-    dispatch(downloadSuccess(downloadItem,savePath))
+    dispatch(downloadSuccess(downloadItem,resData))
     try {
       dispatch(saveStart())
-      let data = await Api.saveImageToCameraRoll(savePath)
+      let data = await Api.saveImageToCameraRoll(downloadItem.savePath)
       dispatch(saveSuccess(data))
     } catch(e) {
       dispatch(saveFail(e))

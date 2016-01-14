@@ -126,7 +126,7 @@ function reducer(state = initialState, action) {
         data.downloadProcessRatio = parseFloat(
           (action.processEvent.bytesWritten / action.processEvent.contentLength).toFixed(2)
         )
-        return list
+        return list.map(data=>data)
       })
     case DOWNLOAD_SUCCESS:
       return state.update('downloadList', (list) => {

@@ -65,21 +65,6 @@ const MainView = React.createClass({
     this.route = route
     this.navigator = navigator
 
-    /**
-     * 导航转换完成之后执行的事件(TODO:多次触发,进行优化)
-     */
-    navigator.navigationContext.addListener('willfocus', (event) => {
-      if(event.data.route.name == 'unsplash'){
-        this.props.actions.showStatusBar()
-        this.props.actions.showNavBar()
-      }
-      else{
-        this.props.actions.hideStatusBar()
-        this.props.actions.hideNavBar()
-      }
-    })
-
-
     switch (route.name) {
       case 'unsplash':
         return this._navToDetailView()
@@ -97,9 +82,10 @@ const MainView = React.createClass({
 
   _navToHomeListView(){
     console.log('renderListView')
-    const {homeView:{imageList},actions} = this.props
+    const {homeView:{imageList},actions,downloadList} = this.props
     return (
       <ImageListView
+        downloadList = { downloadList }
         actions={actions}
         homePhotoListState={imageList.loadState}
         onScrollBottom={this._onScrollBottom}
@@ -132,6 +118,30 @@ const MainView = React.createClass({
     }
   },
 
+  _setNavigatorRef(navigator){
+    if (navigator !== this._navigator) {
+      this._navigator = navigator;
+
+      if (navigator) {
+
+        /**
+        * 导航转换完成之后执行的事件
+        */
+        let that = this
+        navigator.navigationContext.addListener('willfocus', (event) => {
+          if(event.data.route.name == 'unsplash'){
+              that.props.actions.showStatusBar()
+              that.props.actions.showNavBar()
+          }
+          else{
+              that.props.actions.hideStatusBar()
+              that.props.actions.hideNavBar()
+          }
+        })
+      }
+    }
+  },
+
   componentWillReceiveProps(nextProps) {
     const {detailView:{detailImage:{loadState:detailViewLoadState}}} = this.props
     const {detailView:{detailImage:{loadState:nextDetailViewLoadState}}} = nextProps
@@ -153,6 +163,7 @@ const MainView = React.createClass({
     this._handleStatusBar()
     return (
       <Navigator
+        ref={this._setNavigatorRef}
         initialRoute={{name: '', index: 0}}
         navigationBar={this._renderNavBar()}
         renderScene={this._renderScene}

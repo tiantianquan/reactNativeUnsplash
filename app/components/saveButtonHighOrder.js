@@ -27,6 +27,7 @@ const SaveButtonHighOrder = (ButtonComponent) => {
 return React.createClass({
   _showActionSheet(){
     let buttonNames = this.state.actionButtons.map(button=> `${button.size} Size` )
+    buttonNames.push('Cancel')
 
     ActionSheetIOS.showActionSheetWithOptions({
       options:buttonNames,
@@ -58,10 +59,6 @@ return React.createClass({
     if (urls.small){
       buttonList.push(new DownloadItem(urls.small,imageInfo,'Small'))
     }
-    buttonList.push({
-      name:'Cancel'
-    })
-
     return buttonList
   },
 

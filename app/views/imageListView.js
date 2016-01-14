@@ -3,18 +3,21 @@ import React from 'react-native'
 import SideMenu from 'react-native-side-menu'
 import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
-import ListViewSearchBar from '../components/listViewSearchBar'
 import SearchBar from '../components/searchBar'
-import BottomButton from '../components/bottomButton'
 import SideMenuNav from '../components/sideMenuNav'
+import DownloadView from './downloadView'
 
 const {
   ListView,
   View,
   StyleSheet,
   StatusBarIOS,
-  Text
+  Text,
+  Dimensions,
 } = React
+
+const window = Dimensions.get('window')
+
 
 const ImageListView = React.createClass({
   /**
@@ -60,13 +63,6 @@ const ImageListView = React.createClass({
         scrollEventThrottle:1000
       })
     }
-
-    // if(e.nativeEvent.contentOffset.y<-10){
-    //   this.setState({
-    //     ...this.state,
-    //     showSearchBar:true
-    //   })
-    // }
   },
 
   _renderSearchBar(){
@@ -94,9 +90,18 @@ const ImageListView = React.createClass({
     this._bindDatatSource()
   },
   render() {
-    const {homePhotoList,homePhotoListState} = this.props
+    const {homePhotoList,homePhotoListState,downloadList} = this.props
     return (
-      <SideMenu menu={<SideMenuNav/>}>
+      <SideMenu
+        isOpen={false}
+        menu={<DownloadView
+          style={{
+          width:2 / 3 * window.width
+        }}
+          downloadList={downloadList}/>
+        }
+        openMenuOffset = {2 / 3 * window.width}
+        >
       <View style={{flex:1}}>
         <LoadIcon
           style={styles.loadIcon}

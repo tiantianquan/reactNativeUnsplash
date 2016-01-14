@@ -1,7 +1,9 @@
+'use strict'
 import React, { PropTypes } from 'react-native'
 
 const {
   View,
+  Text,
    StyleSheet
 } = React
 
@@ -25,6 +27,7 @@ _renderInner(){
     default:
       break
   }
+  console.log(ratio)
 
   return (
     <View
@@ -32,12 +35,14 @@ _renderInner(){
         styles.inner,
         {
           backgroundColor:backgroundColor,
-          transform:[{
-            scaleX:ratio
-          }]
+          // transform:[{
+          //   scaleX:ratio
+          // }]
+          width:ratio*200
         }
-      ]} />
+      ]} >
 
+    </View>
   )
 
 },
@@ -58,17 +63,20 @@ _renderInner(){
     return (
       <View style={[styles.container,{backgroundColor:backgroundColor}]}>
           {this._renderInner()}
+
       </View>
     )
   }
 })
 
 const styles = StyleSheet.create({
-  conatainer:{
-    flex:1
+  container:{
+    flex:1,
+    flexDirection:'row',
+    justifyContent:'flex-start'
   },
   inner:{
-    flex:1
+    // flex:1,
   }
 })
 

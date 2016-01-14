@@ -5,11 +5,14 @@
 import React from 'react-native'
 
 const{
+  Dimensions,
   TouchableHighlight,
   View,
   Image,
   Text
 } = React
+
+const window = Dimensions.get('window');
 
 
 /**
@@ -72,7 +75,7 @@ const ImageRowItem = React.createClass({
             source={{uri:sourceUrl}}
             style={{
               resizeMode:'cover',
-              height: 375 / imageInfo.width * imageInfo.height,
+              height: window.width / imageInfo.width * imageInfo.height,
               maxHeight:500,
               flex:1
             }}>
