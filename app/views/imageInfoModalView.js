@@ -12,29 +12,22 @@ const{
 } = React
 
 const ImageInfoModal = React.createClass({
-  getInitialState: function() {
-    return {
-      modalVisible:this.props.modalVisible
-    }
-  },
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      modalVisible:nextProps.modalVisible
-    })
+  _handleClose(){
+    this.props.onClose()
   },
   render () {
-    const {imageInfo} = this.props
+    const {imageInfo ,modalVisible} = this.props
     return (
       <Modal
         animated={true}
-        visible={this.state.modalVisible}
+        visible={modalVisible}
         transparent={true}>
         <BlurView
           blurType="dark"
           style={{flex:1}} >
           <TouchableOpacity
             style={{flex:1}}
-            onPress={()=>{this.setState({ modalVisible:false}) }}>
+            onPress={this._handleClose}>
             <View
               style={styles.textContainer}>
               <ModalHeadText contentText="DIMENSONS"/>

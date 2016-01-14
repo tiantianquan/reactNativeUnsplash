@@ -1,17 +1,19 @@
 'use strict'
 import React from 'react-native'
+import SideMenu from 'react-native-side-menu'
 import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
 import ListViewSearchBar from '../components/listViewSearchBar'
 import SearchBar from '../components/searchBar'
 import BottomButton from '../components/bottomButton'
-
+import SideMenuNav from '../components/sideMenuNav'
 
 const {
   ListView,
   View,
   StyleSheet,
-  StatusBarIOS
+  StatusBarIOS,
+  Text
 } = React
 
 const ImageListView = React.createClass({
@@ -94,6 +96,7 @@ const ImageListView = React.createClass({
   render() {
     const {homePhotoList,homePhotoListState} = this.props
     return (
+      <SideMenu menu={<SideMenuNav/>}>
       <View style={{flex:1}}>
         <LoadIcon
           style={styles.loadIcon}
@@ -124,6 +127,7 @@ const ImageListView = React.createClass({
           contentContainerStyle={{ alignItems: 'stretch' }}
           />
       </View>
+    </SideMenu>
     )
   }
 })

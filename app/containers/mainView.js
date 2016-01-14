@@ -37,7 +37,7 @@ var NavigationBarRouteMapper = {
           color="#ccc"
           style={styles.leftIcon} />
       </TouchableOpacity>
-    );
+    )
   },
   RightButton: function(route, navigator, index, navState) {
     return (
@@ -50,7 +50,7 @@ var NavigationBarRouteMapper = {
       <Text style={[styles.navBarText, styles.navBarTitleText]}>
         {route.name}
       </Text>
-    );
+    )
   },
 
 }
@@ -68,12 +68,14 @@ const MainView = React.createClass({
     /**
      * 导航转换完成之后执行的事件(TODO:多次触发,进行优化)
      */
-    navigator.navigationContext.addListener('didfocus', (event) => {
+    navigator.navigationContext.addListener('willfocus', (event) => {
       if(event.data.route.name == 'unsplash'){
         this.props.actions.showStatusBar()
+        this.props.actions.showNavBar()
       }
       else{
         this.props.actions.hideStatusBar()
+        this.props.actions.hideNavBar()
       }
     })
 
@@ -88,14 +90,17 @@ const MainView = React.createClass({
   },
 
   _navToDetailView(){
-    const {detailView:{detailImage:{data}}} = this.props
-    return  (<ImageDetailView focusPhoto={data} />  )
+    console.log('renderDetailView')
+    const {detailView:{detailImage:{data}},actions} = this.props
+    return  (<ImageDetailView actions={actions} focusPhoto={data} />  )
   },
 
   _navToHomeListView(){
-    const {homeView:{imageList}} = this.props
+    console.log('renderListView')
+    const {homeView:{imageList},actions} = this.props
     return (
       <ImageListView
+        actions={actions}
         homePhotoListState={imageList.loadState}
         onScrollBottom={this._onScrollBottom}
         homePhotoList={imageList.data}
@@ -111,6 +116,20 @@ const MainView = React.createClass({
 
   _handleStatusBar(){
     StatusBarIOS.setHidden(!this.props.otherState.statusBarShow,'fade')
+  },
+
+  _renderNavBar(){
+    const {otherState:{navBarShow}}=this.props
+
+    if(navBarShow){
+      return (
+        <Navigator.NavigationBar style={styles.navBar}
+          routeMapper={NavigationBarRouteMapper}
+          />
+      )
+    }else{
+      return <View></View>
+    }
   },
 
   componentWillReceiveProps(nextProps) {
@@ -131,15 +150,11 @@ const MainView = React.createClass({
   },
 
   render() {
-this._handleStatusBar()
+    this._handleStatusBar()
     return (
       <Navigator
         initialRoute={{name: '', index: 0}}
-        navigationBar={
-          <Navigator.NavigationBar
-            routeMapper={NavigationBarRouteMapper}
-            />
-        }
+        navigationBar={this._renderNavBar()}
         renderScene={this._renderScene}
         />
     )
@@ -170,7 +185,6 @@ var styles = StyleSheet.create({
     fontWeight: '500',
   },
   navBar: {
-    backgroundColor: 'red',
   },
   navBarText: {
     fontSize: 17,
@@ -195,7 +209,6 @@ var styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     backgroundColor: '#EAEAEA',
-    // jkl:1
   },
 });
 

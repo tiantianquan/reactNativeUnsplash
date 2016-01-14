@@ -1,6 +1,12 @@
 'use strict'
+import RNFS from 'react-native-fs'
+import {
+  CameraRoll
+}
+from 'react-native'
 import urls from './urls'
 import apiConfig from './config'
+
 
 //TODO:添加错误处理
 /**
@@ -62,6 +68,60 @@ class Api {
       })
     let res = await this.fetchJsonData(url)
     return res
+  }
+
+  /**
+   * 下载图片
+   * @param  {string} url         图片URL
+   * @param  {function} beginCb   开始callback
+   * @param  {function} processCb 进度callback
+   */
+  static async downloadImage(downloadItem, beginCb, processCb) {
+    let data = await RNFS.downloadFile(downloadItem.url, downloadItem.savePath, beginCb, processCb)
+    return data
+
+    // RNFS.downloadFile(url,downloadImagePath,
+    //   //begin
+    //   ()=>{
+    //     console.log('begin')
+    //
+    //   },
+    //   //prcess
+    //   (e)=>{
+    //     console.log('process',downloadImagePath)
+    //     if(e.contentLength ===  e.bytesWritten){
+    //       CameraRoll.saveImageWithTag(downloadImagePath, (data)=>{
+    //         console.log('data:',data)
+    //       }, (err) =>{
+    //           console.log('err',err)
+    //        })
+    //     }
+    //   }
+    // ).then((data)=> {
+    //   console.log(data)
+    // }).catch((err)=>{
+    //   //catch timeout err
+    //   console.log(err)
+    // })
+  }
+
+  /**
+   * 保存图片到相机胶卷
+   * @param  {string} savePath 保存路径
+   */
+  static async saveImageToCameraRoll(savePath) {
+    let save = function(tag) {
+      return new Promise((resolve, reject) => {
+        CameraRoll.saveImageWithTag(tag, (data) => {
+          resolve(data)
+        }, (err) => {
+          reject(err)
+        })
+      })
+    }
+
+    let data = await save(savePath)
+    return data
   }
 
   /**

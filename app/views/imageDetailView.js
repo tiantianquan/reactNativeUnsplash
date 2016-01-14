@@ -5,7 +5,8 @@ import ImageRowItem from '../components/imageRowItem'
 import BottomButton from '../components/bottomButton'
 import ImageInfoModal from './imageInfoModalView'
 import UserHead from '../components/userHead'
-import SaveButton from '../components/saveButton'
+import SaveButtonHighOrder from '../components/saveButtonHighOrder'
+import BottomSaveButton  from '../components/bottomSaveButton'
 
 const {
   View,
@@ -71,6 +72,12 @@ const ImageDetailView = React.createClass({
 
   },
 
+  _handleModalClose(){
+    this.setState({
+      modalVisible:false
+    })
+  },
+
   render() {
     const {focusPhoto} = this.props
     let avatarImageUrl = focusPhoto.user.profile_image.large
@@ -78,7 +85,8 @@ const ImageDetailView = React.createClass({
       <View style={styles.container}>
         <ImageInfoModal
           imageInfo={focusPhoto}
-          modalVisible={this.state.modalVisible}/>
+          modalVisible={this.state.modalVisible}
+          onClose={this._handleModalClose}/>
         <Image
           source={{uri:focusPhoto.urls.regular}}
           style={{flex:1,resizeMode:'cover',}} >
@@ -108,8 +116,12 @@ const ImageDetailView = React.createClass({
                     iconName="ion|ios-upload-outline"
                     color="#ccc"
                     onPress={this._showShareSheet}/>
-                  <SaveButton imageInfo={focusPhoto}></SaveButton>
-
+                  <BottomSaveButton
+                      imageInfo={focusPhoto}
+                      iconName="ion|ios-cloud-download-outline"
+                      color="#ccc"
+                      onDownloadStart={this.props.actions.downloadPreStart}
+                     />
                 </View>
               </View>
 
