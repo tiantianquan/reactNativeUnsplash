@@ -17,6 +17,7 @@ const {
 } = React
 
 const window = Dimensions.get('window')
+const sideMenuWidth = 2 / 3 * window.width
 
 
 const ImageListView = React.createClass({
@@ -93,13 +94,16 @@ const ImageListView = React.createClass({
     const {homePhotoList,homePhotoListState,downloadList} = this.props
     return (
       <SideMenu
-        menu={<DownloadView
-          style={{
-          width:2 / 3 * window.width
-        }}
-          downloadList={downloadList}/>
+        menu={
+          <DownloadView
+            style={{
+              width:sideMenuWidth
+            }}
+            downloadList={downloadList}
+            />
         }
-        openMenuOffset = {2 / 3 * window.width}
+        openMenuOffset = {sideMenuWidth}
+        bounceBackOnOverdraw = {false}
         >
       <View style={{flex:1}}>
         <LoadIcon
