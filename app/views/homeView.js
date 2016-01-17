@@ -5,11 +5,6 @@ import ImageLoadList from '../components/imageLoadList'
 import DownloadView from './downloadView'
 
 const {
-  ListView,
-  View,
-  StyleSheet,
-  StatusBarIOS,
-  Text,
   Dimensions,
 } = React
 

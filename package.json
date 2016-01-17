@@ -27,6 +27,7 @@
     "react-native-blur": "^0.7.7",
     "react-native-drawer": "^1.13.0",
     "react-native-fs": "^1.1.0",
+    "react-native-http-cache": "^0.1.1",
     "react-native-icons": "^0.7.0",
     "react-native-side-menu": "^0.18.0",
     "react-native-spinkit": "0.0.5",

@@ -80,29 +80,6 @@ class Api {
     let data = await RNFS.downloadFile(downloadItem.url, downloadItem.savePath, beginCb, processCb)
     return data
 
-    // RNFS.downloadFile(url,downloadImagePath,
-    //   //begin
-    //   ()=>{
-    //     console.log('begin')
-    //
-    //   },
-    //   //prcess
-    //   (e)=>{
-    //     console.log('process',downloadImagePath)
-    //     if(e.contentLength ===  e.bytesWritten){
-    //       CameraRoll.saveImageWithTag(downloadImagePath, (data)=>{
-    //         console.log('data:',data)
-    //       }, (err) =>{
-    //           console.log('err',err)
-    //        })
-    //     }
-    //   }
-    // ).then((data)=> {
-    //   console.log(data)
-    // }).catch((err)=>{
-    //   //catch timeout err
-    //   console.log(err)
-    // })
   }
 
   /**

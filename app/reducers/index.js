@@ -95,7 +95,7 @@ function reducer(state = initialState, action) {
       return state
         .updateIn(['homeView', 'imageList', 'data'], data => data.concat(action.data))
         .updateIn(['homeView', 'imageList', 'getParams', 'page'], page => page + 1)
-        .setIn(['homeView', 'imageList', 'loadState'], 'loadBefore')
+        .setIn(['homeView', 'imageList', 'loadState'], 'loadSuccess')
 
     case GET_PHOTOS_LOADING:
       return state.setIn(['homeView', 'imageList', 'loadState'], 'loading')

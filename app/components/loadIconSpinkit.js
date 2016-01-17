@@ -17,8 +17,8 @@ const LoadIcon = React.createClass({
   _handleLoadBefore(){
     const dis =  this.props.scrollEndDis
     if ( dis > 0 ){
-      const endReachedDis = -this.props.endReachedThreshold
-      const ratio = dis / endReachedDis > 1 ? 1 : dis / endReachedDis
+      const overBottomDis = -this.props.overBottomDis
+      const ratio = dis / overBottomDis > 1 ? 1 : dis / overBottomDis
       this.setState({
         ...this.state,
         opacity:ratio,
@@ -48,7 +48,13 @@ const LoadIcon = React.createClass({
   /**
    * 载入成功执行
    */
-  _handleLoadSuccess(){ },
+  _handleLoadSuccess(){
+    this.setState({
+      ...this.state,
+      opacity:0,
+      scale:0,
+    })
+  },
 
   /**
    * 载入失败执行
@@ -80,8 +86,14 @@ const LoadIcon = React.createClass({
     if (loadState === 'loadBefore'){
       this._handleLoadBefore()
     }else if (this.props.loadState!== nextProps.loadState&& loadState === 'loading'){
-      this._handleLoading()
+      setTimeout(()=>{
+        if (this.props.loadState === 'loading'){
+          this.props.onLoading()
+          this._handleLoading()
+        }
+      },500)
     }else if (this.props.loadState!== nextProps.loadState && loadState === 'loadSuccess'){
+      this.props.onLoadSuccess()
       this._handleLoadSuccess()
     }
   },

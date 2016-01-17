@@ -1,10 +1,12 @@
 'use strict'
 import React from 'react-native'
+import * as Cache from 'react-native-http-cache'
 import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
-import SearchBar from '../components/searchBar'
 
 const {
+  TouchableOpacity,
+  Text,
   ListView,
   View,
   StyleSheet,
@@ -52,14 +54,21 @@ const ImageLoadList = React.createClass({
       this.setState({
         ...this.state,
         scrollEndDis:dis,
-        scrollEventThrottle:1000,
+        scrollEventThrottle:500,
       })
     }
   },
 
-  _renderSearchBar(){
+  _renderDebugView(){
     return (
-        <SearchBar />
+        <TouchableOpacity onPress={()=>{
+              Cache.clear()
+          }}>
+            <Text style={{
+                color:'#fff',
+                fontSize:20
+              }}>Clear Cache</Text>
+        </TouchableOpacity>
     )
   },
 
@@ -71,9 +80,14 @@ const ImageLoadList = React.createClass({
   getInitialState: function() {
     return {
       scrollEndDis: 0,
-      endReachedThreshold:-30,
-      scrollEventThrottle:1000,
+      //命中列表底部px距离 + 代表距离底部 - 代表超过底部
+      endReachedThreshold:500,
+      //触发scroll事件间隔
+      scrollEventThrottle:500,
+      overBottomDis:30,
       topBarHeight:100,
+      marginBottom:0
+
     }
   },
 
@@ -84,14 +98,26 @@ const ImageLoadList = React.createClass({
   render() {
     const {photoList,photoListLoadState,downloadList} = this.props
     return (
-      <View style={{flex:1}}>
+      <View style={{flex:1}} >
         <LoadIcon
           style={styles.loadIcon}
           loadState={photoListLoadState}
           scrollEndDis={this.state.scrollEndDis}
-          endReachedThreshold={this.state.endReachedThreshold}
+          overBottomDis={this.state.overBottomDis}
           backgroundColor="#222222"
           iconColor="#e2e2e2"
+          onLoading={()=>{
+            this.setState({
+              ...this.state,
+              marginBottom:30
+            })
+          }}
+          onLoadSuccess={()=>{
+            this.setState({
+              ...this.state,
+              marginBottom:0
+            })
+          }}
           />
 
 
@@ -101,16 +127,17 @@ const ImageLoadList = React.createClass({
            */
           contentOffset={{y:0}}
           showsVerticalScrollIndicator={true}
-          // renderHeader = {this._renderSearchBar}
+          renderHeader = {this._renderDebugView}
           scrollEventThrottle={this.state.scrollEventThrottle}
           onScroll={this._handleScroll}
           onEndReachedThreshold={this.state.endReachedThreshold}
           onEndReached={this._onScrollBottom}
           dataSource={this.ds.cloneWithRows(photoList)}
           renderRow={this._renderRow}
-          style={[styles.imageListViewStyle,
-            photoListLoadState==='loading'?{marginBottom:-this.state.endReachedThreshold}:{},
-          ] }
+          // style={[styles.imageListViewStyle,
+          //   photoListLoadState==='loading'?{marginBottom:this.state.overBottomDis}:{},
+          // ] }
+          style={[styles.imageListViewStyle,{marginBottom:this.state.marginBottom}]}
           contentContainerStyle={{ alignItems: 'stretch' }}
           />
       </View>
