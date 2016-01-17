@@ -65,10 +65,10 @@ const ImageRowItem = React.createClass({
     }
   },
   render () {
-    const {pressImage,imageInfo,style,sourceUrl} = this.props
+    const {pressImage,imageInfo,style,sourceUrl,longPressImage} = this.props
 
     return (
-      <TouchableHighlight  onPress={()=>pressImage(imageInfo)}>
+      <TouchableHighlight onLongPress={()=>longPressImage()}  onPress={()=>pressImage(imageInfo)}>
         <View style={style}>
           <Image
             onProgress = {this._handleImageOnProcess}

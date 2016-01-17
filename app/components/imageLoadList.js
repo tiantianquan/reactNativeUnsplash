@@ -1,6 +1,5 @@
 'use strict'
 import React from 'react-native'
-import * as Cache from 'react-native-http-cache'
 import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
 
@@ -24,14 +23,17 @@ const ImageLoadList = React.createClass({
   * 渲染列表项
   */
   _renderRow(rowData){
-    const {pressImage} = this.props
+    const {pressImage,longPressImage} = this.props
     return (
       /*
         直接传入URL可以更快的显示图片
        */
       <ImageRowItem
         imageInfo={rowData}
-        pressImage={pressImage} sourceUrl={rowData.urls.regular} />
+        pressImage={pressImage}
+        longPressImage={longPressImage}
+        sourceUrl={rowData.urls.regular}
+         />
     )
   },
 
@@ -59,18 +61,7 @@ const ImageLoadList = React.createClass({
     }
   },
 
-  _renderDebugView(){
-    return (
-        <TouchableOpacity onPress={()=>{
-              Cache.clear()
-          }}>
-            <Text style={{
-                color:'#fff',
-                fontSize:20
-              }}>Clear Cache</Text>
-        </TouchableOpacity>
-    )
-  },
+
 
   _initScrollPosition(){
 
@@ -127,7 +118,7 @@ const ImageLoadList = React.createClass({
            */
           contentOffset={{y:0}}
           showsVerticalScrollIndicator={true}
-          renderHeader = {this._renderDebugView}
+          // renderHeader = {this._renderDebugView}
           scrollEventThrottle={this.state.scrollEventThrottle}
           onScroll={this._handleScroll}
           onEndReachedThreshold={this.state.endReachedThreshold}

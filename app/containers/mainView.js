@@ -61,6 +61,11 @@ const MainView = React.createClass({
     this.props.actions.getPhotoByIdAsync(imageInfo.id)
   },
 
+  _freshList(){
+    this.props.actions.freshHomeList()
+  },
+
+
   _renderScene(route,navigator){
     this.route = route
     this.navigator = navigator
@@ -90,6 +95,7 @@ const MainView = React.createClass({
           onScrollBottom={this._onScrollBottom}
           homePhotoList={imageList.data}
           pressImage={this._pressImage}
+          freshList={this._freshHomeList}
         />
     )
   },
