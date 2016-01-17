@@ -207,6 +207,12 @@ function saveFail(err) {
   }
 }
 
+function freshHomeList(){
+  return {
+    type: 'FRESH_HOME_LIST'
+  }
+}
+
 export default {
   getPhotosAsync,
   getPhotos,
@@ -223,4 +229,5 @@ export default {
   downloadSuccess,
   downloadFail,
   downloadProcess,
+  freshHomeList
 }

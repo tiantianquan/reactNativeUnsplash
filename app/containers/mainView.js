@@ -61,7 +61,7 @@ const MainView = React.createClass({
     this.props.actions.getPhotoByIdAsync(imageInfo.id)
   },
 
-  _freshList(){
+  _freshHomeList(){
     this.props.actions.freshHomeList()
   },
 
