@@ -1,26 +1,16 @@
 'use strict'
 import React from 'react-native'
-import SideMenu from '../components/react-native-side-menu'
 import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
 import SearchBar from '../components/searchBar'
-import SideMenuNav from '../components/sideMenuNav'
-import DownloadView from './downloadView'
 
 const {
   ListView,
   View,
   StyleSheet,
-  StatusBarIOS,
-  Text,
-  Dimensions,
 } = React
 
-const window = Dimensions.get('window')
-const sideMenuWidth = 2 / 3 * window.width
-
-
-const ImageListView = React.createClass({
+const ImageLoadList = React.createClass({
   /**
   * 绑定列表数据
   */
@@ -44,17 +34,18 @@ const ImageListView = React.createClass({
   },
 
   _onScrollBottom(){
-    if(this.props.homePhotoListState !=='loading'){
+    if(this.props.photoListLoadState !=='loading'){
       this.props.onScrollBottom()
     }
   },
 
   _handleScroll(e){
-    let dis  = e.nativeEvent.contentOffset.y+e.nativeEvent.layoutMeasurement.height-e.nativeEvent.contentSize.height
+    let dis = e.nativeEvent.contentOffset.y+e.nativeEvent.layoutMeasurement.height-e.nativeEvent.contentSize.height
     if (dis > 0){
       this.setState({
         ...this.state,
-        scrollEndDis:dis,
+        // scrollEndDis:dis,
+        scrollEndDis:0,
         scrollEventThrottle:0,
       })
     }else if(this.state.scrollEventThrottle !== 1000){
@@ -91,24 +82,12 @@ const ImageListView = React.createClass({
     this._bindDatatSource()
   },
   render() {
-    const {homePhotoList,homePhotoListState,downloadList} = this.props
+    const {photoList,photoListLoadState,downloadList} = this.props
     return (
-      <SideMenu
-        menu={
-          <DownloadView
-            style={{
-              width:sideMenuWidth
-            }}
-            downloadList={downloadList}
-            />
-        }
-        openMenuOffset = {sideMenuWidth}
-        bounceBackOnOverdraw = {false}
-        >
       <View style={{flex:1}}>
         <LoadIcon
           style={styles.loadIcon}
-          loadState={homePhotoListState}
+          loadState={photoListLoadState}
           scrollEndDis={this.state.scrollEndDis}
           endReachedThreshold={this.state.endReachedThreshold}
           backgroundColor="#222222"
@@ -127,15 +106,14 @@ const ImageListView = React.createClass({
           onScroll={this._handleScroll}
           onEndReachedThreshold={this.state.endReachedThreshold}
           onEndReached={this._onScrollBottom}
-          dataSource={this.ds.cloneWithRows(homePhotoList)}
+          dataSource={this.ds.cloneWithRows(photoList)}
           renderRow={this._renderRow}
           style={[styles.imageListViewStyle,
-            homePhotoListState==='loading'?{marginBottom:-this.state.endReachedThreshold}:{},
+            photoListLoadState==='loading'?{marginBottom:-this.state.endReachedThreshold}:{},
           ] }
           contentContainerStyle={{ alignItems: 'stretch' }}
           />
       </View>
-    </SideMenu>
     )
   }
 })
@@ -149,7 +127,7 @@ let styles = StyleSheet.create({
   }
 })
 
-export default ImageListView
+export default ImageLoadList
 
 // <View style={[styles.topButtonContainer,{height:this.state.topBarHeight}]}>
 //   <BottomButton

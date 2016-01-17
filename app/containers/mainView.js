@@ -6,7 +6,7 @@ import { Icon } from 'react-native-icons'
 import cssVar from 'cssVar'
 
 
-import ImageListView from '../views/imageListView'
+import HomeView from '../views/homeView'
 import ImageDetailView from '../views/imageDetailView'
 import actions from '../actions'
 
@@ -84,13 +84,12 @@ const MainView = React.createClass({
     console.log('renderListView')
     const {homeView:{imageList},actions,downloadList} = this.props
     return (
-      <ImageListView
-        downloadList = { downloadList }
-        actions={actions}
-        homePhotoListState={imageList.loadState}
-        onScrollBottom={this._onScrollBottom}
-        homePhotoList={imageList.data}
-        pressImage={this._pressImage}
+      <HomeView
+          downloadList = { downloadList }
+          homePhotoListState={imageList.loadState}
+          onScrollBottom={this._onScrollBottom}
+          homePhotoList={imageList.data}
+          pressImage={this._pressImage}
         />
     )
   },
