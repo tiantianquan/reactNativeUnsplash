@@ -1,13 +1,14 @@
 'use strict'
-import React, { PropTypes } from 'react-native'
+import React from 'react'
+import {PropTypes}  from 'react-native'
 
-const {
+import {
   Animated,
   View,
   Text,
    StyleSheet,
    Dimensions
-} = React
+} from 'react-native'
 
 const window = Dimensions.get('window')
 

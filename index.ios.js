@@ -1,10 +1,10 @@
 'use strict'
 
-import React from 'react-native'
+import React from 'react'
 import App from './app/containers'
 
-const {
+import {
   AppRegistry
-} = React
+} from 'react-native'
 
 AppRegistry.registerComponent('reactNativeUnsplash', () =>App)

@@ -1,15 +1,15 @@
 'use strict'
-import React from 'react-native'
+import React from 'react'
 import {BlurView,VibrancyView} from 'react-native-blur'
 import ModalHeadText from '../components/modalHeadText'
 import ModalSubText from '../components/modalSubText'
 
-const{
+import {
   Modal,
   View,
   StyleSheet,
   TouchableOpacity
-} = React
+} from 'react-native'
 
 const ImageInfoModal = React.createClass({
   _handleClose(){

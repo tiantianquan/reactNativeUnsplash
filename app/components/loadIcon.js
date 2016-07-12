@@ -1,10 +1,10 @@
 'use strict'
-import React from 'react-native'
-import {Icon} from 'react-native-icons'
+import React from 'react'
+import {Icon} from 'react-native-vector-icons'
 import TimerMixin from 'react-timer-mixin'
 
 
-const { View, Animated, ScrollView } = React
+import {View, Animated, ScrollView} from 'react-native'
 
 /**
  * props

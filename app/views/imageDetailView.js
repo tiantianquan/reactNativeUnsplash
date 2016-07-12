@@ -1,5 +1,5 @@
 'use strict'
-import React from 'react-native'
+import React from 'react'
 import {BlurView} from 'react-native-blur'
 import ImageRowItem from '../components/imageRowItem'
 import BottomButton from '../components/bottomButton'
@@ -8,14 +8,14 @@ import UserHead from '../components/userHead'
 import SaveButtonHighOrder from '../components/saveButtonHighOrder'
 import BottomSaveButton  from '../components/bottomSaveButton'
 
-const {
+import  {
   View,
   StyleSheet,
   StatusBarIOS,
   Image,
   ActionSheetIOS,
   CameraRoll
-} = React
+} from 'react-native'
 
 const ImageDetailView = React.createClass({
 

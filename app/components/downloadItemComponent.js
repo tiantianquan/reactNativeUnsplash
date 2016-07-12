@@ -1,13 +1,14 @@
 'use strict'
-import React,{PropTypes}  from 'react-native'
+import React from 'react'
+import {PropTypes}  from 'react-native'
 import DownloadProcessBar from './downloadProcessBar'
 
-const {
+import {
   TouchableOpacity,
   View,
   Image,
   StyleSheet
-} = React
+} from 'react-native'
 
 
 const DownloadItemComponent  = React.createClass({

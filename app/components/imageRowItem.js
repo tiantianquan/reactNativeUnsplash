@@ -2,15 +2,15 @@
 /**
  * 图片列表项组件
  */
-import React from 'react-native'
+import React from 'react'
 
-const{
+import {
   Dimensions,
   TouchableHighlight,
   View,
   Image,
   Text
-} = React
+} from 'react-native'
 
 const window = Dimensions.get('window');
 

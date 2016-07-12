@@ -1,14 +1,15 @@
 'use strict'
-import React,{PropTypes} from 'react-native'
+import React from 'react'
+import {PropTypes} from 'react-native'
 import DownloadItemComponent from '../components/downloadItemComponent'
 
-const {
+import {
   Dimensions,
   View,
   Text,
   ListView,
   StyleSheet
-} = React
+} from 'react-native'
 
 const window = Dimensions.get('window');
 

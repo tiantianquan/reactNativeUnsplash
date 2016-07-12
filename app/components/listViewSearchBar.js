@@ -1,8 +1,9 @@
 'use strict'
-import React, { PropTypes } from 'react-native'
+import React from 'react'
+import {PropTypes}  from 'react-native'
 import SearchBar from './searchBar'
 
-const {View}=React
+import {View} from 'react-native'
 const ListViewSearchBar = React.createClass({
   render () {
     return (

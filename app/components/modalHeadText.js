@@ -1,11 +1,11 @@
 'use strict'
-import React from 'react-native'
+import React from 'react'
 
-const {
+import {
   View,
   Text,
   StyleSheet
-} = React
+} from  'react-native'
 
 const ModalHeadText = React.createClass({
   render () {

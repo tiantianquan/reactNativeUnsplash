@@ -1,24 +1,21 @@
-const React = require('react-native');
+const React = require('react');
 
-const {
+import {
   StyleSheet,
-} = React;
-
-const absoluteStretch = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-};
+} from 'react-native';
 
 module.exports = StyleSheet.create({
   container: {
-    ...absoluteStretch,
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   menu: {
-    ...absoluteStretch,
+    flex: 1,
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
   frontView: {
     flex: 1,
@@ -28,7 +25,11 @@ module.exports = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   overlay: {
-    ...absoluteStretch,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
     backgroundColor: 'transparent',
   },
 });

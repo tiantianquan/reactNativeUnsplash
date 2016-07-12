@@ -1,17 +1,17 @@
 'use strict'
-import React from 'react-native'
-import * as Cache from 'react-native-http-cache'
+import React from 'react'
+// import * as Cache from 'react-native-http-cache'
 import SideMenu from '../components/react-native-side-menu'
 import ImageLoadList from '../components/imageLoadList'
 import DownloadView from './downloadView'
 
-const {
+import {
   View,
   Dimensions,
   StyleSheet,
   Text,
   ActionSheetIOS
-} = React
+} from 'react-native'
 
 const window = Dimensions.get('window')
 const sideMenuWidth = 2 / 3 * window.width
@@ -23,7 +23,7 @@ const HomeView = React.createClass({
         <View style={styles.container}>
             <Text
               onPress={()=>{
-                    Cache.clear()
+                    // Cache.clear()
                 }}
                style={styles.text}>Clear Cache</Text>
           </View>

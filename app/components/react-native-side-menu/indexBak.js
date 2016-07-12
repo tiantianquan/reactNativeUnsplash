@@ -1,15 +1,16 @@
-//@noflow
 const styles = require('./styles');
-const ReactNative = require('react-native');
 const React = require('react');
-const { Dimensions, Animated, } = ReactNative;
-const deviceScreen = Dimensions.get('window');
 
-const {
+
+import { Dimensions, Animated } from 'react-native';
+import {
   PanResponder,
   View,
   TouchableWithoutFeedback,
-} = ReactNative;
+  Component,
+} from 'react-native';
+
+const deviceScreen = Dimensions.get('window');
 
 /**
  * Size of the amount you can move content view in the opened menu state and
@@ -28,7 +29,7 @@ function shouldOpenMenu(dx: Number) {
   return dx > barrierForward;
 }
 
-class SideMenu extends React.Component {
+class SideMenu extends Component {
   constructor(props) {
     super(props);
 
@@ -40,13 +41,11 @@ class SideMenu extends React.Component {
     this.prevLeft = 0;
     this.isOpen = props.isOpen;
 
-    const initialMenuPositionMultiplier = props.menuPosition === 'right' ? -1 : 1
-
     this.state = {
       width: deviceScreen.width,
       height: deviceScreen.height,
       left: new Animated.Value(
-        props.isOpen ? props.openMenuOffset * initialMenuPositionMultiplier : props.hiddenMenuOffset
+        props.isOpen ? props.openMenuOffset : props.hiddenMenuOffset
       ),
     };
   }
@@ -66,7 +65,7 @@ class SideMenu extends React.Component {
 
   componentWillReceiveProps(props) {
     if (this.isOpen !== props.isOpen) {
-      this.openMenu(props.isOpen);
+      // this.openMenu(props.isOpen);
     }
   }
 
@@ -213,12 +212,7 @@ class SideMenu extends React.Component {
    * @return {React.Component}
    */
   render() {
-
-    const boundryStyle = this.props.menuPosition == 'right' ?
-      {left: deviceScreen.width - this.props.openMenuOffset} :
-      {right: deviceScreen.width - this.props.openMenuOffset} ;
-
-    const menu = <View style={[styles.menu, boundryStyle]}>{this.props.menu}</View>;
+    const menu = <View style={styles.menu}>{this.props.menu}</View>;
 
     return (
       <View style={styles.container} onLayout={this.onLayoutChange.bind(this)}>

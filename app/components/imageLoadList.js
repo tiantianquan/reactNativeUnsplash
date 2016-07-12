@@ -1,15 +1,15 @@
 'use strict'
-import React from 'react-native'
+import React from 'react'
 import ImageRowItem from '../components/imageRowItem'
 import LoadIcon from '../components/loadIconSpinkit'
 
-const {
+import {
   TouchableOpacity,
   Text,
   ListView,
   View,
   StyleSheet,
-} = React
+} from 'react-native'
 
 const ImageLoadList = React.createClass({
   /**

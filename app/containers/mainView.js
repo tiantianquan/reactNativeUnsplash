@@ -1,16 +1,16 @@
 'use strict'
-import React from 'react-native'
+import React from 'react'
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux/native'
-import { Icon } from 'react-native-icons'
-import cssVar from 'cssVar'
+import { connect } from 'react-redux'
+import { Icon } from 'react-native-vector-icons'
+//import cssVar from 'cssVar'
 
 
 import HomeView from '../views/homeView'
 import ImageDetailView from '../views/imageDetailView'
 import actions from '../actions'
 
-const {
+import {
   // NavigatorIOS,
   Navigator,
   StyleSheet,
@@ -19,7 +19,7 @@ const {
   PixelRatio,
   View,
   StatusBarIOS
-} = React
+} from 'react-native'
 
 var NavigationBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {

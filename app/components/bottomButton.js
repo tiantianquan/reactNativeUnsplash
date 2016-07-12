@@ -1,12 +1,12 @@
 'use strict'
-import React from 'react-native'
-import {Icon} from  'react-native-icons'
+import React from 'react'
+import {Icon} from  'react-native-vector-icons'
 
-const {
+import {
   TouchableOpacity,
   StyleSheet,
   View
-} = React
+} from 'react-native'
 
 const BottomButton = React.createClass({
   render () {

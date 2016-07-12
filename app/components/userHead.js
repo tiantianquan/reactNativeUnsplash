@@ -1,13 +1,13 @@
 'use strict'
-import React  from 'react-native'
+import React  from 'react'
 
-const {
+import {
   StyleSheet,
   View,
   Image,
   TouchableOpacity,
   Text
-} = React
+} from 'react-native'
 
 const UserHead = React.createClass({
   render () {

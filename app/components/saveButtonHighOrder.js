@@ -1,11 +1,11 @@
 'use strict'
-import React from 'react-native'
+import React from 'react'
 import RNFS from 'react-native-fs'
 
-const {
+import {
   StyleSheet,
   ActionSheetIOS,
-} = React
+} from 'react-native'
 
 class DownloadItem {
   constructor(url, imageInfo, size) {

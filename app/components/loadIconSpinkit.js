@@ -4,10 +4,10 @@
 */
 
 'use strict'
-import React from 'react-native'
+import React from 'react'
 import Spinner from 'react-native-spinkit'
 
-const { View } = React
+import { View } from 'react-native'
 
 const LoadIcon = React.createClass({
 
