@@ -1,6 +1,5 @@
 'use strict'
-import React from 'react'
-import {PropTypes}  from 'react-native'
+import React,{PropTypes} from 'react'
 
 import {
   Animated,

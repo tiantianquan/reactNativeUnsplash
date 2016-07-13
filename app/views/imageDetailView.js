@@ -11,7 +11,7 @@ import BottomSaveButton  from '../components/bottomSaveButton'
 import  {
   View,
   StyleSheet,
-  StatusBarIOS,
+  StatusBar,
   Image,
   ActionSheetIOS,
   CameraRoll
@@ -24,8 +24,8 @@ const ImageDetailView = React.createClass({
     /**
     * 设置状态栏颜色
     */
-    StatusBarIOS.setHidden(false,'fade')
-    StatusBarIOS.setStyle('light-content',true)
+    StatusBar.setHidden(false,'fade')
+    StatusBar.setBarStyle('light-content',true)
   },
   getInitialState() {
     return {
@@ -113,12 +113,12 @@ const ImageDetailView = React.createClass({
 
                 <View style={styles.bottomButtonContainer}>
                   <BottomButton
-                    iconName="ion|ios-upload-outline"
+                    iconName="ios-share-outline"
                     color="#ccc"
                     onPress={this._showShareSheet}/>
                   <BottomSaveButton
                       imageInfo={focusPhoto}
-                      iconName="ion|ios-cloud-download-outline"
+                      iconName="ios-cloud-download-outline"
                       color="#ccc"
                       onDownloadStart={this.props.actions.downloadPreStart}
                      />

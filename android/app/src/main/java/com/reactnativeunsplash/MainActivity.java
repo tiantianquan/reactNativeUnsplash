@@ -1,6 +1,11 @@
 package com.reactnativeunsplash;
 
 import com.facebook.react.ReactActivity;
+import com.smixx.reactnativeicons.ReactNativeIcons;
+import cn.reactnative.httpcache.HttpCachePackage;
+import com.rnfs.RNFSPackage;
+import com.cmcewen.blurview.BlurViewPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
 
 public class MainActivity extends ReactActivity {
 

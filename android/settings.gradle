@@ -1,3 +1,13 @@
 rootProject.name = 'reactNativeUnsplash'
 
 include ':app'
+include ':react-native-icons'
+project(':react-native-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-icons/android')
+include ':react-native-http-cache'
+project(':react-native-http-cache').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-http-cache/android')
+include ':react-native-fs'
+project(':react-native-fs').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fs/android')
+include ':react-native-blur'
+project(':react-native-blur').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-blur/android')
+include ':react-native-spinkit'
+project(':react-native-spinkit').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-spinkit/android')

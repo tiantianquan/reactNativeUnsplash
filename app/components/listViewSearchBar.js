@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import {PropTypes}  from 'react-native'
+import {PropTypes}  from 'react'
 import SearchBar from './searchBar'
 
 import {View} from 'react-native'

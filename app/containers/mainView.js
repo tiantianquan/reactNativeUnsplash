@@ -2,7 +2,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Icon } from 'react-native-vector-icons'
+import Icon from 'react-native-vector-icons/Ionicons'
 //import cssVar from 'cssVar'
 
 
@@ -18,13 +18,13 @@ import {
   TouchableOpacity,
   PixelRatio,
   View,
-  StatusBarIOS
+  StatusBar
 } from 'react-native'
 
 var NavigationBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {
     if (index === 0) {
-      return null;
+      return null
     }
     var previousRoute = navState.routeStack[index - 1];
     return (
@@ -32,7 +32,7 @@ var NavigationBarRouteMapper = {
         onPress={() => navigator.pop()}
         style={styles.navBarLeftButton}>
         <Icon
-          name="ion|ios-arrow-left"
+          name="ios-arrow-back"
           size={30}
           color="#ccc"
           style={styles.leftIcon} />
@@ -40,9 +40,10 @@ var NavigationBarRouteMapper = {
     )
   },
   RightButton: function(route, navigator, index, navState) {
-    return (
-      <View></View>
-    );
+    // return (
+    //   <View></View>
+    // );
+    return null
   },
 
   Title: function(route, navigator, index, navState) {
@@ -106,7 +107,7 @@ const MainView = React.createClass({
   },
 
   _handleStatusBar(){
-    StatusBarIOS.setHidden(!this.props.otherState.statusBarShow,'fade')
+    StatusBar.setHidden(!this.props.otherState.statusBarShow,'fade')
   },
 
   _renderNavBar(){
@@ -219,7 +220,7 @@ var styles = StyleSheet.create({
     paddingRight: 10,
   },
   navBarButtonText: {
-    color: cssVar('fbui-accent-blue'),
+    // color: cssVar('fbui-accent-blue'),
   },
   scene: {
     flex: 1,

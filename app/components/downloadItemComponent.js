@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import {PropTypes}  from 'react-native'
+import {PropTypes}  from 'react'
 import DownloadProcessBar from './downloadProcessBar'
 
 import {

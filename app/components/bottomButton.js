@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import {Icon} from  'react-native-vector-icons'
+import Icon from  'react-native-vector-icons/Ionicons'
 
 import {
   TouchableOpacity,

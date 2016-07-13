@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import {PropTypes} from 'react-native'
+import {PropTypes}  from 'react'
 import DownloadItemComponent from '../components/downloadItemComponent'
 
 import {
