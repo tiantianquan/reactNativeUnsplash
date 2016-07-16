@@ -96,16 +96,6 @@ class Api {
    * @param  {string} savePath 保存路径
    */
   static async saveImageToCameraRoll(savePath) {
-    // let save = function(tag) {
-    //   return new Promise((resolve, reject) => {
-    //     CameraRoll.saveToCameraRoll(tag, (data) => {
-    //       resolve(data)
-    //     }, (err) => {
-    //       reject(err)
-    //     })
-    //   })
-    // }
-
     let data = await CameraRoll.saveToCameraRoll(savePath,'photo')
     return data
   }
