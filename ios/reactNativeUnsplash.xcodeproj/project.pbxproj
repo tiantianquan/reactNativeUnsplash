@@ -34,6 +34,7 @@
 		184AD7A91D366AE400807BF7 /* Open Sans regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 184AD79F1D366AE400807BF7 /* Open Sans regular.ttf */; };
 		184AD7DC1D367A3400807BF7 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 184AD7DB1D367A3400807BF7 /* Ionicons.ttf */; };
 		18604DE31D3665A000FA0530 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18604DE21D36656300FA0530 /* libRNFS.a */; };
+		18A3B8781D3A060900AF0798 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A3B8771D3A05B000AF0798 /* libRCTCameraRoll.a */; };
 		546DB786AD8744729EFC72C3 /* libRCTHttpCache.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EB954EE71FD4AD2BF6ADEF9 /* libRCTHttpCache.a */; };
 		5AE2B09716EC4B369C94D3F1 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B71B01575564E2D92546660 /* libRNBlur.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -140,6 +141,13 @@
 			remoteGlobalIDString = A68BD7BC1BC31318005F02DF;
 			remoteInfo = RNBlur;
 		};
+		18A3B8761D3A05B000AF0798 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18A3B8721D3A05AF00AF0798 /* RCTCameraRoll.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
+			remoteInfo = RCTCameraRoll;
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -191,6 +199,7 @@
 		184AD79F1D366AE400807BF7 /* Open Sans regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Open Sans regular.ttf"; path = "../fonts/Open Sans regular.ttf"; sourceTree = "<group>"; };
 		184AD7DB1D367A3400807BF7 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		18604DDD1D36656300FA0530 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
+		18A3B8721D3A05AF00AF0798 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		2A5C0F32B7EA4DF294D06E97 /* libReactNativeIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeIcons.a; sourceTree = "<group>"; };
 		6FA53190F7A642ED9A12344A /* libRNSpinkit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSpinkit.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -213,6 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A3B8781D3A060900AF0798 /* libRCTCameraRoll.a in Frameworks */,
 				18604DE31D3665A000FA0530 /* libRNFS.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -369,6 +379,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		18A3B8731D3A05AF00AF0798 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18A3B8771D3A05B000AF0798 /* libRCTCameraRoll.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +398,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				18A3B8721D3A05AF00AF0798 /* RCTCameraRoll.xcodeproj */,
 				18604DDD1D36656300FA0530 /* RNFS.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -491,6 +510,14 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 8WT4Y3QAC2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "reactNativeUnsplash" */;
@@ -508,6 +535,10 @@
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
+				},
+				{
+					ProductGroup = 18A3B8731D3A05AF00AF0798 /* Products */;
+					ProjectRef = 18A3B8721D3A05AF00AF0798 /* RCTCameraRoll.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -666,6 +697,13 @@
 			remoteRef = 18604DFD1D3666FC00FA0530 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		18A3B8771D3A05B000AF0798 /* libRCTCameraRoll.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCameraRoll.a;
+			remoteRef = 18A3B8761D3A05B000AF0798 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -817,6 +855,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -835,6 +875,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = reactNativeUnsplash;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -842,6 +883,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -859,6 +902,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = reactNativeUnsplash;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

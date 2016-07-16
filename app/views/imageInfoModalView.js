@@ -19,7 +19,7 @@ const ImageInfoModal = React.createClass({
     const {imageInfo ,modalVisible} = this.props
     return (
       <Modal
-        animated={true}
+        animationType={"slide"}
         visible={modalVisible}
         transparent={true}>
         <BlurView

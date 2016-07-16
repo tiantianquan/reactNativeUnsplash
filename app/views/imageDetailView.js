@@ -162,16 +162,17 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   imageContainer:{
+    // backgroundColor:'rgba(0,0,0,0.3)',
     flex:1,
     flexDirection:'column',
     justifyContent:'center',
-    shadowColor: 'white',
-    shadowRadius: 10,
-    shadowOpacity: 0.5,
-    shadowOffset: {
-      h: 0,
-      w: 0
-    },
+    // shadowColor: 'white',
+    // shadowRadius: 10,
+    // shadowOpacity: 0.5,
+    // shadowOffset: {
+    //   height: 0,
+    //   width: 0
+    // },
   },
   bottomButtonContainer:{
     flexDirection:'row',

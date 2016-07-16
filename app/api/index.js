@@ -77,7 +77,16 @@ class Api {
    * @param  {function} processCb 进度callback
    */
   static async downloadImage(downloadItem, beginCb, processCb) {
-    let data = await RNFS.downloadFile(downloadItem.url, downloadItem.savePath, beginCb, processCb)
+    // let data = await RNFS.downloadFile(downloadItem.url, downloadItem.savePath, beginCb, processCb)
+    let data = await RNFS.downloadFile({
+      fromUrl: downloadItem.url, // URL to download file from
+      toFile:downloadItem.savePath , // Local filesystem path to save the file to
+      // headers ? : Headers; // An object of headers to be passed to the server
+      background: true,
+      progressDivider:0,
+      begin:beginCb,
+      progress :processCb
+    })
     return data
 
   }
@@ -87,17 +96,17 @@ class Api {
    * @param  {string} savePath 保存路径
    */
   static async saveImageToCameraRoll(savePath) {
-    let save = function(tag) {
-      return new Promise((resolve, reject) => {
-        CameraRoll.saveImageWithTag(tag, (data) => {
-          resolve(data)
-        }, (err) => {
-          reject(err)
-        })
-      })
-    }
+    // let save = function(tag) {
+    //   return new Promise((resolve, reject) => {
+    //     CameraRoll.saveToCameraRoll(tag, (data) => {
+    //       resolve(data)
+    //     }, (err) => {
+    //       reject(err)
+    //     })
+    //   })
+    // }
 
-    let data = await save(savePath)
+    let data = await CameraRoll.saveToCameraRoll(savePath,'photo')
     return data
   }
 

@@ -58,7 +58,7 @@ const HomeView = React.createClass({
         bounceBackOnOverdraw = {false}
         >
         <View style={{flex:1}}>
-          {this._renderDebugView()}
+          {/*{this._renderDebugView()}*/}
           <ImageLoadList
             longPressImage={this._longPressImage}
             photoListLoadState={homePhotoListState}
